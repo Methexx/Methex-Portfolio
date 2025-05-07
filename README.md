@@ -1,3 +1,24 @@
+# MethexWeB Portfolio
+
+MethexWeB is a personal portfolio built using **React (JSX)**, **Vite**, and **Tailwind CSS**. It features a clean, modern UI with a focus on dark mode by default, full-screen animated navigation, and per-page particle backgrounds for dynamic visual effects.
+
+---
+
+## 🚀 Features
+
+- 🌙 **Dark Mode First** design with optional Light Mode
+- 🎨 **Custom cards** for each theme (dark and light)
+- 💫 **Unique particle backgrounds** per page
+- 📱 **Mobile-friendly full-screen menu** with curved transition and animated toggle icon
+- ⚡ **Built with Vite** for fast development
+
+---
+
+## 🧩 File Structure
+
+
+
+
 ```
 methexweb/
 ├── public/
@@ -44,3 +65,32 @@ methexweb/
 ├── postcss.config.js
 └── vite.config.js
 ```
+
+---
+
+## 📦 Getting Started
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+
+
+
+#🔧 Tech Stack
+
+React
+
+Vite
+
+Tailwind CSS
+
+Framer Motion (optional, for animations)
+
+tsparticles (optional, for particle backgrounds)
