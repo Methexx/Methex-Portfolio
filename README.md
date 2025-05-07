@@ -1,3 +1,4 @@
+```
 methexweb/
 ├── public/
 │   └── assets/                  # Static assets (images, logos)
@@ -42,3 +43,4 @@ methexweb/
 ├── tailwind.config.js
 ├── postcss.config.js
 └── vite.config.js
+```
