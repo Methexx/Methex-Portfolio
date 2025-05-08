@@ -1,7 +1,7 @@
 # MethexWeB Portfolio
 
 MethexWeB is a personal portfolio built using **React (JSX)**, **Vite**, and **Tailwind CSS**. It features a clean, modern UI with a focus on dark mode by default, full-screen animated navigation, and per-page particle backgrounds for dynamic visual effects.
-
+ 
 ---
 
 ## 🚀 Features
