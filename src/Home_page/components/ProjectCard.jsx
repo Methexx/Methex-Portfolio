@@ -8,7 +8,7 @@ const ProjectCard = ({
   return (
     <>
       <div className="project-card">
-        <div className="top-light"></div> {/* 🔶 Orange glowing bar */}
+        <div className="top-light"></div>
         <div className="project-image">
           <div className="project-placeholder"></div>
         </div>
@@ -16,18 +16,36 @@ const ProjectCard = ({
           <h3 className="project-name">{title}</h3>
           <p className="project-description">{description}</p>
           <div className="tech-stack">
-            {technologies.map((tech, index) => (
+            {technologies?.map((tech, index) => (
               <span key={index} className="tech-tag">{tech}</span>
             ))}
+          </div>
         </div>
       </div>
-      </div>  
 
       <style jsx>{`
+        .top-light {
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          top: -20px;
+          width: 300px;
+          height: 6px;
+          border-radius: 10px;
+          background: #fffef9;
+          box-shadow:
+            0 0px 1px 1px #ffc78e,
+            0 1px 2px 1px rgba(255, 148, 41, 0.47),
+            0 2px 6px 1px rgba(233, 139, 45, 0.47),
+            0 4px 12px 0px rgba(255, 158, 61, 0.6),
+            0 12px 20px 12px rgba(255, 128, 0, 0.27);
+          z-index: 2;
+        }
+
         .project-card {
           position: relative;
           width: 100%;
-          max-width: 270px;
+          max-width: 300px;
           height: 5%;
           min-height: 450px;
           border-radius: 16px;
@@ -42,35 +60,9 @@ const ProjectCard = ({
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          overflow: hidden;
+          overflow: visible;
           transition: all 0.3s ease;
           border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .top-light {
-          position: absolute;
-          left: 50%;
-          transform: translateX(-50%);
-          top: -10px;
-          width: 280px;
-          height: 6px;
-          border-radius: 10px;
-          background: #fffef9;
-          box-shadow:
-            0 0px 1px 1px #ffc78e,
-            0 1px 2px 1px rgba(255, 148, 41, 0.47),
-            0 2px 6px 1px rgba(233, 139, 45, 0.47),
-            0 4px 12px 0px rgba(255, 158, 61, 0.6),
-            0 12px 20px 12px rgba(255, 128, 0, 0.27);
-          z-index: 2;
-        }
-
-        .project-card:hover {
-          transform: translateY(-5px);
-          box-shadow: inset 0 2px 2px 0 rgba(231, 196, 160, 0.53), 
-                      inset 0 -2px 2px 0 rgba(0, 0, 0, 0.2),
-                      0 20px 40px rgba(0, 0, 0, 0.3);
-          border-color: rgba(255, 255, 255, 0.2);
         }
 
         .project-image {
