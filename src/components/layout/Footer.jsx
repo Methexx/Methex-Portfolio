@@ -12,7 +12,7 @@ const Footer = () => {
           position: relative;
           z-index: 10;
           padding: 2rem 0;
-          border-top: 1px solid rgba(255, 255, 255, 0.05);
+          border-top: 0px solid rgba(255, 255, 255, 0.05);
           text-align: center;
         }
 

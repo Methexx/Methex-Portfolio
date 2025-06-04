@@ -3,6 +3,7 @@ import Navbar from '../../components/layout/Navbar';
 import Footer from '../../components/layout/Footer';
 import ProjectCard from '../components/projectcard';
 import profileImage from '../components/dp.jpg';
+import AbtButton from '../components/AbtButton';
 
 const Home = () => {
   const projects = [
@@ -19,6 +20,8 @@ const Home = () => {
       technologies: ["Next.js", "Node.js", "MongoDB", "Stripe"]
     }
   ];
+
+
 
   const handleAboutClick = () => {
     // Add navigation logic here
@@ -52,13 +55,8 @@ const Home = () => {
              internship opportunities from Sri Lanka.
           </p>
 
-          <button 
-            className="cta-button"
-            onClick={handleAboutClick}
-            aria-label="Learn more about me"
-          >
-            About Me
-          </button>
+          <AbtButton onClick={handleAboutClick} />
+
         </div>
       </main>
 
