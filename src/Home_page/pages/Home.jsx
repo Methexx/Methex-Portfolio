@@ -18,6 +18,12 @@ const Home = () => {
       title: "E-Commerce Platform",
       description: "A full-stack e-commerce solution with payment integration and inventory management.",
       technologies: ["Next.js", "Node.js", "MongoDB", "Stripe"]
+    },
+    {
+      id: 3,
+      title: "E-Commerce Platform",
+      description: "A full-stack e-commerce solution with payment integration and inventory management.",
+      technologies: ["Next.js", "Node.js", "MongoDB", "Stripe"]
     }
   ];
 

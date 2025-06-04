@@ -8,6 +8,7 @@ const ProjectCard = ({
   return (
     <>
       <div className="project-card">
+        <div className="top-light"></div> {/* 🔶 Orange glowing bar */}
         <div className="project-image">
           <div className="project-placeholder"></div>
         </div>
@@ -18,17 +19,16 @@ const ProjectCard = ({
             {technologies.map((tech, index) => (
               <span key={index} className="tech-tag">{tech}</span>
             ))}
-          </div>
-          <div className="view-button">View Project</div>
         </div>
       </div>
+      </div>  
 
       <style jsx>{`
         .project-card {
           position: relative;
           width: 100%;
-          max-width: 500px;
-          height: 100%;
+          max-width: 270px;
+          height: 5%;
           min-height: 450px;
           border-radius: 16px;
           background: linear-gradient(180deg, rgba(41, 41, 41, 0.67) 0%, rgba(25, 25, 25, 0.8) 50%);
@@ -45,6 +45,24 @@ const ProjectCard = ({
           overflow: hidden;
           transition: all 0.3s ease;
           border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .top-light {
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          top: -10px;
+          width: 280px;
+          height: 6px;
+          border-radius: 10px;
+          background: #fffef9;
+          box-shadow:
+            0 0px 1px 1px #ffc78e,
+            0 1px 2px 1px rgba(255, 148, 41, 0.47),
+            0 2px 6px 1px rgba(233, 139, 45, 0.47),
+            0 4px 12px 0px rgba(255, 158, 61, 0.6),
+            0 12px 20px 12px rgba(255, 128, 0, 0.27);
+          z-index: 2;
         }
 
         .project-card:hover {
@@ -124,29 +142,6 @@ const ProjectCard = ({
           border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .view-button {
-          width: fit-content;
-          border-radius: 100px;
-          padding: 12px 24px;
-          background: rgba(255, 255, 255, 0.1);
-          box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2), 
-                      inset 120px 0 100px -100px rgba(0, 0, 0, 0.1),
-                      0 0 0 0 rgba(255, 255, 255, 0.1);
-          transition: all 0.4s ease-in-out;
-          cursor: pointer;
-          font-weight: 600;
-          align-self: flex-start;
-          color: white;
-        }
-
-        .view-button:hover {
-          box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2), 
-                      inset 200px 0px 100px -100px rgba(0, 0, 0, 0.1),
-                      0 0 10px 2px rgba(255, 255, 255, 0.1);
-          background: rgba(255, 255, 255, 0.15);
-        }
-
-        /* Responsive Design */
         @media (max-width: 768px) {
           .project-card {
             min-height: 400px;

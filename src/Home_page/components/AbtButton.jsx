@@ -4,7 +4,7 @@ const AbtButton = ({
   onClick, 
   text = "About Me", 
   disabled = false, 
-  speed = 3, 
+  speed = 5, 
   className = '' 
 }) => {
   const animationDuration = `${speed}s`;
@@ -61,7 +61,7 @@ const AbtButton = ({
             rgba(255, 255, 255, 0.1),
             transparent
           );
-          transition: left 0.9s;
+          transition: left 1.9s;
         }
 
         .abt-button:hover {
