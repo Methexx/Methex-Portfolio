@@ -47,7 +47,7 @@ const ProjectCard = ({
           width: 100%;
           max-width: 300px;
           height: 5%;
-          min-height: 450px;
+          min-height: 400px;
           border-radius: 16px;
           background: linear-gradient(180deg, rgba(41, 41, 41, 0.67) 0%, rgba(25, 25, 25, 0.8) 50%);
           backdrop-filter: blur(4px);

@@ -9,7 +9,7 @@ const Home = () => {
   const projects = [
     {
       id: 1,
-      title: "ABC Cinema – Movie Ticket Booking System",
+      title: "ABC Cinema  Movie Ticket Booking System",
       description: "A Java-based web app for booking movie tickets with an admin dashboard.",
       technologies: ["React", "Java", "MySQL", "Spring Boot"]
     },
@@ -21,8 +21,8 @@ const Home = () => {
     },
     {
       id: 3,
-      title: "E-Commerce Platform",
-      description: "A full-stack e-commerce solution with payment integration and inventory management.",
+      title: "Greenie Social Platform",
+      description: "Greenie is a gamified platform that encourages  through challenges, rewards, and social engagement.",
       technologies: ["Next.js", "Node.js", "MongoDB", "Stripe"]
     }
   ];
