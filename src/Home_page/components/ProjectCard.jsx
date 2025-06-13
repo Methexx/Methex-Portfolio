@@ -3,14 +3,38 @@ import React from 'react';
 const ProjectCard = ({ 
   title,
   description,
-  technologies
+  technologies,
+  image,
+  imageAlt,
+  onClick
 }) => {
+  const handleClick = () => {
+    if (onClick) {
+      onClick();
+    }
+  };
+
+  const handleImageError = (e) => {
+    // If image fails to load, hide it and show placeholder
+    e.target.style.display = 'none';
+    e.target.nextSibling.style.display = 'block';
+  };
+
   return (
     <>
-      <div className="project-card">
+      <div className="project-card" onClick={handleClick}>
         <div className="top-light"></div>
         <div className="project-image">
-          <div className="project-placeholder"></div>
+          {image && (
+            <img 
+              src={image} 
+              alt={imageAlt || title} 
+              className="project-img"
+              onError={handleImageError}
+              loading="lazy"
+            />
+          )}
+          <div className="project-placeholder" style={{ display: image ? 'none' : 'block' }}></div>
         </div>
         <div className="project-content">
           <h3 className="project-name">{title}</h3>
@@ -40,6 +64,7 @@ const ProjectCard = ({
             0 4px 12px 0px rgba(255, 158, 61, 0.6),
             0 12px 20px 12px rgba(255, 128, 0, 0.27);
           z-index: 2;
+          transition: all 0.3s ease;
         }
 
         .project-card {
@@ -61,8 +86,32 @@ const ProjectCard = ({
           flex-direction: column;
           justify-content: space-between;
           overflow: visible;
-          transition: all 0.3s ease;
+          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
           border: 1px solid rgba(255, 255, 255, 0.1);
+          cursor: pointer;
+          transform-origin: center bottom;
+        }
+
+        .project-card:hover {
+          transform: translateY(-12px) scale(1.02);
+          box-shadow: inset 0 2px 2px 0 rgba(231, 196, 160, 0.6), 
+                      inset 0 -2px 2px 0 rgba(0, 0, 0, 0.3),
+                      0 8px 40px rgba(0, 0, 0, 0.4),
+                      0 0 0 1px rgba(255, 255, 255, 0.2);
+          border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .project-card:hover .top-light {
+          box-shadow:
+            0 0px 2px 2px #ffc78e,
+            0 2px 4px 2px rgba(255, 148, 41, 0.6),
+            0 4px 12px 2px rgba(233, 139, 45, 0.6),
+            0 8px 20px 2px rgba(255, 158, 61, 0.7),
+            0 16px 30px 16px rgba(255, 128, 0, 0.4);
+        }
+
+        .project-card:active {
+          transform: translateY(-8px) scale(1.01);
         }
 
         .project-image {
@@ -74,6 +123,19 @@ const ProjectCard = ({
           margin-bottom: 20px;
           overflow: hidden;
           position: relative;
+          transition: all 0.3s ease;
+        }
+
+        .project-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+          transition: all 0.3s ease;
+        }
+
+        .project-card:hover .project-img {
+          transform: scale(1.05);
         }
 
         .project-placeholder {
@@ -81,6 +143,7 @@ const ProjectCard = ({
           height: 100%;
           background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
           border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          transition: all 0.3s ease;
         }
 
         .project-image::after {
@@ -92,6 +155,11 @@ const ProjectCard = ({
           bottom: 0;
           background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1));
           pointer-events: none;
+          transition: all 0.3s ease;
+        }
+
+        .project-card:hover .project-image::after {
+          background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2));
         }
 
         .project-content {
@@ -99,6 +167,7 @@ const ProjectCard = ({
           display: flex;
           flex-direction: column;
           justify-content: space-between;
+          transition: all 0.3s ease;
         }
 
         .project-name {
@@ -107,6 +176,11 @@ const ProjectCard = ({
           margin: 0 0 12px 0;
           color: #fff;
           line-height: 1.3;
+          transition: all 0.3s ease;
+        }
+
+        .project-card:hover .project-name {
+          color: #ffc78e;
         }
 
         .project-description {
@@ -115,6 +189,11 @@ const ProjectCard = ({
           color: rgba(255, 255, 255, 0.7);
           line-height: 1.5;
           margin: 0 0 20px 0;
+          transition: all 0.3s ease;
+        }
+
+        .project-card:hover .project-description {
+          color: rgba(255, 255, 255, 0.9);
         }
 
         .tech-stack {
@@ -132,12 +211,24 @@ const ProjectCard = ({
           font-size: 0.85rem;
           font-weight: 400;
           border: 1px solid rgba(255, 255, 255, 0.1);
+          transition: all 0.3s ease;
         }
 
+        .project-card:hover .tech-tag {
+          background: rgba(255, 199, 142, 0.2);
+          color: rgba(255, 255, 255, 0.95);
+          border-color: rgba(255, 199, 142, 0.3);
+        }
+
+        /* Mobile responsiveness */
         @media (max-width: 768px) {
           .project-card {
             min-height: 400px;
             max-width: 100%;
+          }
+
+          .project-card:hover {
+            transform: translateY(-8px) scale(1.01);
           }
         }
 
@@ -148,6 +239,10 @@ const ProjectCard = ({
 
           .project-image {
             height: 150px;
+          }
+
+          .project-card:hover {
+            transform: translateY(-6px) scale(1.005);
           }
         }
       `}</style>

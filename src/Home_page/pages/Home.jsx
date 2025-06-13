@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import ParticlesHome from '../../components/effects/ParticlesHome';
 import Navbar from '../../components/layout/Navbar';
 import Footer from '../../components/layout/Footer';
@@ -6,10 +7,12 @@ import profileImage from '../components/dp.jpg';
 import AbtButton from '../components/AbtButton';
 
 const Home = () => {
+  const navigate = useNavigate();
+
   const projects = [
     {
       id: 1,
-      title: "ABC Cinema  Movie Ticket Booking System",
+      title: "ABC Cinema Movie Ticket Booking System",
       description: "A Java-based web app for booking movie tickets with an admin dashboard.",
       technologies: ["React", "Java", "MySQL", "Spring Boot"]
     },
@@ -22,16 +25,21 @@ const Home = () => {
     {
       id: 3,
       title: "Greenie Social Platform",
-      description: "Greenie is a gamified platform that encourages  through challenges, rewards, and social engagement.",
+      description: "Greenie is a gamified platform that encourages through challenges, rewards, and social engagement.",
       technologies: ["Next.js", "Node.js", "MongoDB", "Stripe"]
     }
   ];
 
-
+  const handleProjectClick = (project) => {
+    console.log('Project clicked:', project);
+    // Navigate to project detail page
+    // For example: navigate(`/project/${project.id}`);
+    // Or: window.location.href = `/project-details?id=${project.id}`;
+  };
 
   const handleAboutClick = () => {
-    // Add navigation logic here
-    console.log('Navigate to About section');
+    // Navigate to About page
+    navigate('/about');
   };
 
   return (
@@ -77,6 +85,7 @@ const Home = () => {
                 title={project.title}
                 description={project.description}
                 technologies={project.technologies}
+                onClick={() => handleProjectClick(project)}
               />
             ))}
           </div>
@@ -91,6 +100,7 @@ const Home = () => {
           min-height: 100vh;
           width: 100%;
           overflow-x: hidden;
+          padding-top: 80px; /* Add padding to account for fixed navbar */
         }
 
         .hero-section {
@@ -99,14 +109,14 @@ const Home = () => {
           display: flex;
           align-items: center;
           justify-content: center;
-          min-height: 100vh;
+          min-height: calc(100vh - 80px); /* Adjust for navbar height */
           padding: 2rem 1rem;
-          margin-top: 40px; /* Reduced from 200px for better spacing */
+          margin-top: 0; /* Remove margin-top since we're using padding-top on container */
         }
 
         .hero-content {
           width: 100%;
-          max-width: 1200px; /* Added max-width for better control */
+          max-width: 1200px;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -134,7 +144,7 @@ const Home = () => {
         }
 
         .hero-title {
-          font-size: clamp(2rem, 1vw, 4rem); /* Improved minimum size */
+          font-size: clamp(2rem, 1vw, 4rem);
           font-weight: 500;
           color: white;
           line-height: 1.2;
@@ -143,12 +153,12 @@ const Home = () => {
         }
 
         .hero-description {
-          font-size: clamp(1rem, 2.5vw, 1.2rem); /* Made responsive */
+          font-size: clamp(1rem, 2.5vw, 1.2rem);
           color: rgba(255, 255, 255, 0.8);
           line-height: 1.6;
           margin-bottom: 1.5rem;
           font-weight: 300;
-          max-width: 600px; /* Added for better readability */
+          max-width: 600px;
         }
 
         .cta-button {
@@ -193,11 +203,11 @@ const Home = () => {
 
         .projects-container {
           width: 100%;
-          max-width: 1200px; /* Added max-width for consistency */
+          max-width: 1200px;
         }
 
         .projects-title {
-          font-size: clamp(2rem, 4vw, 2.5rem); /* Made responsive */
+          font-size: clamp(2rem, 4vw, 2.5rem);
           font-weight: 300;
           color: white;
           text-align: center;
@@ -207,15 +217,19 @@ const Home = () => {
 
         .projects-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Reduced min-width for mobile */
+          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
           gap: 2rem;
           justify-items: center;
         }
 
         /* Mobile responsiveness */
         @media (max-width: 768px) {
+          .home-container {
+            padding-top: 70px; /* Slightly less padding on mobile */
+          }
+
           .hero-section {
-            margin-top: 80px;
+            min-height: calc(100vh - 70px);
             padding: 1rem;
           }
 
@@ -226,7 +240,7 @@ const Home = () => {
           }
 
           .hero-description br {
-            display: none; /* Remove line breaks on mobile */
+            display: none;
           }
 
           .projects-grid {
@@ -241,13 +255,17 @@ const Home = () => {
         }
 
         @media (max-width: 480px) {
+          .home-container {
+            padding-top: 60px; /* Even less padding on small mobile */
+          }
+
+          .hero-section {
+            min-height: calc(100vh - 60px);
+          }
+
           .projects-grid {
             grid-template-columns: 1fr;
             gap: 1rem;
-          }
-          
-          .hero-section {
-            margin-top: 40px;
           }
         }
       `}</style>

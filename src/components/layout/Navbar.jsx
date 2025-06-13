@@ -1,11 +1,24 @@
+import { useNavigate } from 'react-router-dom';
 import './Navbar.css';
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
+  const handleBrandClick = () => {
+    navigate('/'); // Navigate to home page
+  };
+
   return (
     <nav className="navbar">
       <div className="app-wrapper">
         <div className="nav-content">
-          <div className="nav-brand">Methex</div>
+          <div 
+            className="nav-brand" 
+            onClick={handleBrandClick}
+            style={{ cursor: 'pointer' }}
+          >
+            Methex
+          </div>
           <div className="nav-menu">
             <label className="hamburger">
               <input type="checkbox" />
