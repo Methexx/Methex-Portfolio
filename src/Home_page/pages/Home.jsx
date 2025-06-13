@@ -1,276 +1,276 @@
-import { useNavigate } from 'react-router-dom';
-import ParticlesHome from '../../components/effects/ParticlesHome';
-import Navbar from '../../components/layout/Navbar';
-import Footer from '../../components/layout/Footer';
-import ProjectCard from '../components/projectcard';
-import profileImage from '../components/dp.jpg';
-import AbtButton from '../components/AbtButton';
+  import { useNavigate } from 'react-router-dom';
+  import ParticlesHome from '../../components/effects/ParticlesHome';
+  import Navbar from '../../components/layout/Navbar';
+  import Footer from '../../components/layout/Footer';
+  import ProjectCard from '../components/projectcard';
+  import profileImage from '../components/dp.jpg';
+  import AbtButton from '../components/AbtButton';
 
-const Home = () => {
-  const navigate = useNavigate();
+  const Home = () => {
+    const navigate = useNavigate();
 
-  const projects = [
-    {
-      id: 1,
-      title: "ABC Cinema Movie Ticket Booking System",
-      description: "A Java-based web app for booking movie tickets with an admin dashboard.",
-      technologies: ["React", "Java", "MySQL", "Spring Boot"]
-    },
-    {
-      id: 2,
-      title: "E-Commerce Platform",
-      description: "A full-stack e-commerce solution with payment integration and inventory management.",
-      technologies: ["Next.js", "Node.js", "MongoDB", "Stripe"]
-    },
-    {
-      id: 3,
-      title: "Greenie Social Platform",
-      description: "Greenie is a gamified platform that encourages through challenges, rewards, and social engagement.",
-      technologies: ["Next.js", "Node.js", "MongoDB", "Stripe"]
-    }
-  ];
+    const projects = [
+      {
+        id: 1,
+        title: "ABC Cinema Movie Ticket Booking System",
+        description: "A Java-based web app for booking movie tickets with an admin dashboard.",
+        technologies: ["React", "Java", "MySQL", "Spring Boot"]
+      },
+      {
+        id: 2,
+        title: "E-Commerce Platform",
+        description: "A full-stack e-commerce solution with payment integration and inventory management.",
+        technologies: ["Next.js", "Node.js", "MongoDB", "Stripe"]
+      },
+      {
+        id: 3,
+        title: "Greenie Social Platform",
+        description: "Greenie is a gamified platform that encourages through challenges, rewards, and social engagement.",
+        technologies: ["Next.js", "Node.js", "MongoDB", "Stripe"]
+      }
+    ];
 
-  const handleProjectClick = (project) => {
-    console.log('Project clicked:', project);
-    // Navigate to project detail page
-    // For example: navigate(`/project/${project.id}`);
-    // Or: window.location.href = `/project-details?id=${project.id}`;
-  };
+    const handleProjectClick = (project) => {
+      console.log('Project clicked:', project);
+      // Navigate to project detail page
+      // For example: navigate(`/project/${project.id}`);
+      // Or: window.location.href = `/project-details?id=${project.id}`;
+    };
 
-  const handleAboutClick = () => {
-    // Navigate to About page
-    navigate('/about');
-  };
+    const handleAboutClick = () => {
+      // Navigate to About page
+      navigate('/about');
+    };
 
-  return (
-    <div className="home-container">
-      <ParticlesHome />
-      <Navbar />
+    return (
+      <div className="home-container">
+        <ParticlesHome />
+        <Navbar />
 
-      {/* Hero Section */}
-      <main className="hero-section">
-        <div className="hero-content">
-          <div className="profile-image">
-            <img 
-              src={profileImage} 
-              alt="Methum Pathirana - Fullstack Developer" 
-              className="profile-img"
-              loading="lazy"
-            />
-          </div>
-
-          <h1 className="hero-title">
-            Crafting Clean Code for<br />
-            Complex Problems
-          </h1>
-
-          <p className="hero-description">
-            I'm Methum Pathirana, seeking fullstack developer<br />
-             internship opportunities from Sri Lanka.
-          </p>
-
-          <AbtButton onClick={handleAboutClick} />
-
-        </div>
-      </main>
-
-      {/* Projects Section */}
-      <section className="projects-section" aria-labelledby="projects-heading">
-        <div className="projects-container">
-          <h2 id="projects-heading" className="projects-title">Recent Projects</h2>
-          <div className="projects-grid">
-            {projects.map((project) => (
-              <ProjectCard 
-                key={project.id}
-                title={project.title}
-                description={project.description}
-                technologies={project.technologies}
-                onClick={() => handleProjectClick(project)}
+        {/* Hero Section */}
+        <main className="hero-section">
+          <div className="hero-content">
+            <div className="profile-image">
+              <img 
+                src={profileImage} 
+                alt="Methum Pathirana - Fullstack Developer" 
+                className="profile-img"
+                loading="lazy"
               />
-            ))}
+            </div>
+
+            <h1 className="hero-title">
+              Crafting Clean Code for<br />
+              Complex Problems
+            </h1>
+
+            <p className="hero-description">
+              I'm Methum Pathirana, seeking fullstack developer<br />
+              internship opportunities from Sri Lanka.
+            </p>
+
+            <AbtButton onClick={handleAboutClick} />
+
           </div>
-        </div>
-      </section>
+        </main>
 
-      <Footer />
+        {/* Projects Section */}
+        <section className="projects-section" aria-labelledby="projects-heading">
+          <div className="projects-container">
+            <h2 id="projects-heading" className="projects-title">Recent Projects</h2>
+            <div className="projects-grid">
+              {projects.map((project) => (
+                <ProjectCard 
+                  key={project.id}
+                  title={project.title}
+                  description={project.description}
+                  technologies={project.technologies}
+                  onClick={() => handleProjectClick(project)}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
 
-      <style jsx>{`
-        .home-container {
-          position: relative;
-          min-height: 100vh;
-          width: 100%;
-          overflow-x: hidden;
-          padding-top: 80px; /* Add padding to account for fixed navbar */
-        }
+        <Footer />
 
-        .hero-section {
-          position: relative;
-          z-index: 10;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          min-height: calc(100vh - 80px); /* Adjust for navbar height */
-          padding: 2rem 1rem;
-          margin-top: 0; /* Remove margin-top since we're using padding-top on container */
-        }
-
-        .hero-content {
-          width: 100%;
-          max-width: 1200px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          text-align: center;
-        }
-
-        .profile-image {
-          margin: 0 auto 1.5rem auto;
-          width: 150px;
-          height: 150px;
-          border-radius: 50%;
-          overflow: hidden;
-          border: 3px solid rgba(255, 255, 255, 0.2);
-          backdrop-filter: blur(10px);
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-          transition: transform 0.3s ease;
-        }
-
-        .profile-img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: transform 0.3s ease;
-        }
-
-        .hero-title {
-          font-size: clamp(2rem, 1vw, 4rem);
-          font-weight: 500;
-          color: white;
-          line-height: 1.2;
-          margin-bottom: 0rem;
-          letter-spacing: -0.02em;
-        }
-
-        .hero-description {
-          font-size: clamp(1rem, 2.5vw, 1.2rem);
-          color: rgba(255, 255, 255, 0.8);
-          line-height: 1.6;
-          margin-bottom: 1.5rem;
-          font-weight: 300;
-          max-width: 600px;
-        }
-
-        .cta-button {
-          background: transparent;
-          border: 2px solid rgba(255, 255, 255, 0.3);
-          color: white;
-          padding: 1rem 2.5rem;
-          font-size: 1rem;
-          font-weight: 500;
-          border-radius: 50px;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          backdrop-filter: blur(10px);
-          letter-spacing: 0.5px;
-        }
-
-        .cta-button:hover {
-          background: rgba(255, 255, 255, 0.1);
-          border-color: rgba(255, 255, 255, 0.5);
-          transform: translateY(-2px);
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .cta-button:active {
-          transform: translateY(0);
-        }
-
-        .cta-button:focus {
-          outline: 2px solid rgba(255, 255, 255, 0.5);
-          outline-offset: 2px;
-        }
-
-        .projects-section {
-          position: relative;
-          z-index: 10;
-          padding: 4rem 1rem;
-          min-height: 60vh;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .projects-container {
-          width: 100%;
-          max-width: 1200px;
-        }
-
-        .projects-title {
-          font-size: clamp(2rem, 4vw, 2.5rem);
-          font-weight: 300;
-          color: white;
-          text-align: center;
-          margin-bottom: 4rem;
-          letter-spacing: -0.02em;
-        }
-
-        .projects-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-          gap: 2rem;
-          justify-items: center;
-        }
-
-        /* Mobile responsiveness */
-        @media (max-width: 768px) {
+        <style jsx>{`
           .home-container {
-            padding-top: 70px; /* Slightly less padding on mobile */
+            position: relative;
+            min-height: 100vh;
+            width: 100%;
+            overflow-x: hidden;
+            padding-top: 80px; /* Add padding to account for fixed navbar */
           }
 
           .hero-section {
-            min-height: calc(100vh - 70px);
-            padding: 1rem;
+            position: relative;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 80px); /* Adjust for navbar height */
+            padding: 2rem 1rem;
+            margin-top: 0; /* Remove margin-top since we're using padding-top on container */
+          }
+
+          .hero-content {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
           }
 
           .profile-image {
-            width: 120px;
-            height: 120px;
-            margin-bottom: 1rem;
+            margin: 0 auto 1.5rem auto;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
           }
 
-          .hero-description br {
-            display: none;
+          .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
           }
 
-          .projects-grid {
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
+          .hero-title {
+            font-size: clamp(2rem, 1vw, 4rem);
+            font-weight: 500;
+            color: white;
+            line-height: 1.2;
+            margin-bottom: 0rem;
+            letter-spacing: -0.02em;
+          }
+
+          .hero-description {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+            max-width: 600px;
           }
 
           .cta-button {
-            padding: 0.8rem 2rem;
-            font-size: 0.9rem;
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            letter-spacing: 0.5px;
           }
-        }
 
-        @media (max-width: 480px) {
-          .home-container {
-            padding-top: 60px; /* Even less padding on small mobile */
+          .cta-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
           }
 
-          .hero-section {
-            min-height: calc(100vh - 60px);
+          .cta-button:active {
+            transform: translateY(0);
+          }
+
+          .cta-button:focus {
+            outline: 2px solid rgba(255, 255, 255, 0.5);
+            outline-offset: 2px;
+          }
+
+          .projects-section {
+            position: relative;
+            z-index: 10;
+            padding: 4rem 1rem;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          .projects-container {
+            width: 100%;
+            max-width: 1200px;
+          }
+
+          .projects-title {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 300;
+            color: white;
+            text-align: center;
+            margin-bottom: 4rem;
+            letter-spacing: -0.02em;
           }
 
           .projects-grid {
-            grid-template-columns: 1fr;
-            gap: 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            justify-items: center;
           }
-        }
-      `}</style>
-    </div>
-  );
-};
 
-export default Home;
+          /* Mobile responsiveness */
+          @media (max-width: 768px) {
+            .home-container {
+              padding-top: 70px; /* Slightly less padding on mobile */
+            }
+
+            .hero-section {
+              min-height: calc(100vh - 70px);
+              padding: 1rem;
+            }
+
+            .profile-image {
+              width: 120px;
+              height: 120px;
+              margin-bottom: 1rem;
+            }
+
+            .hero-description br {
+              display: none;
+            }
+
+            .projects-grid {
+              grid-template-columns: 1fr;
+              gap: 1.5rem;
+            }
+
+            .cta-button {
+              padding: 0.8rem 2rem;
+              font-size: 0.9rem;
+            }
+          }
+
+          @media (max-width: 480px) {
+            .home-container {
+              padding-top: 60px; /* Even less padding on small mobile */
+            }
+
+            .hero-section {
+              min-height: calc(100vh - 60px);
+            }
+
+            .projects-grid {
+              grid-template-columns: 1fr;
+              gap: 1rem;
+            }
+          }
+        `}</style>
+      </div>
+    );
+  };
+
+  export default Home;
