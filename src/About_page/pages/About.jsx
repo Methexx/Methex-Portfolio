@@ -106,6 +106,13 @@ const About = () => {
                     <p className="timeline-detail">Foss Community - NSBM Green University</p>
                   </div>
                 </div>
+                <div className="timeline-item">
+                  <div className="timeline-dot"></div>
+                  <div className="timeline-content">
+                    <h4 className="timeline-title">Student Member</h4>
+                    <p className="timeline-detail">IEEE - SriLanka Section</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
