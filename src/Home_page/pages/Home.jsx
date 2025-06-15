@@ -5,6 +5,7 @@ import Footer from '../../components/layout/Footer';
 import ProjectCard from '../components/projectcard';
 import profileImage from '../components/dp.jpg';
 import AbtButton from '../components/AbtButton';
+import Spline from '@splinetool/react-spline';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -106,6 +107,7 @@ const Home = () => {
               <span className="arrow">→</span>
             </button>
           </div>
+           <Spline scene="https://prod.spline.design/VqpGnZ70d41cL6lg/scene.splinecode" />
         </div>
       </section>
 
