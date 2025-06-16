@@ -217,7 +217,7 @@
 .link-indicator {
   width: 10px;
   height: 10px;
-  background: #ffffff;
+  background: #cd1414;
   border-radius: 50%;
   position: absolute;
   left: -30px;
@@ -302,17 +302,6 @@
   flex-wrap: wrap;
 }
 
-.menu-footer a {
-  color: #ffffff;
-  text-decoration: none;
-  transition: font-weight 0.2s ease, transform 0.3s ease, color 0.3s ease;
-}
-
-.menu-footer a:hover {
-  font-weight: bold;
-  transform: translateX(2px);
-  transition: font-weight 0.2s ease, transform 0.3s ease;
-}
 
 /* Backdrop */
 .nav-backdrop {
@@ -368,10 +357,7 @@ body.nav-open {
     font-size: 32px;
   }
   
-  .menu-footer {
-    gap: 20px;
-    font-size: 11px;
-  }
+  
 }
 
 @media (max-width: 480px) {
@@ -391,9 +377,5 @@ body.nav-open {
     font-size: 28px;
   }
   
-  .menu-footer {
-    flex-direction: column;
-    gap: 15px;
-    align-items: flex-start;
-  }
+  
 }

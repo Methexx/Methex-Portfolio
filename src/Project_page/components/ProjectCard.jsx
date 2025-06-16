@@ -8,13 +8,16 @@ const ProjectCard = ({ project, onClick }) => {
     image
   } = project;
 
+  // Use the provided GitHub avatar as fallback if project doesn't have an image
+  const projectImage = image || 'https://avatars.githubusercontent.com/u/157824523?v=4';
+
   return (
     <div 
       className="project-card"
       onClick={() => onClick(project)}
     >
       <div className="project-image">
-        <img src={image} alt={title} />
+        <img src={projectImage} alt={title} />
       </div>
       <div className="project-content">
         <div className="project-header-info">
@@ -77,6 +80,7 @@ const ProjectCard = ({ project, onClick }) => {
           width: 100%;
           height: 200px;
           overflow: hidden;
+          background: rgba(255, 255, 255, 0.05);
         }
 
         .project-image img {
@@ -84,6 +88,7 @@ const ProjectCard = ({ project, onClick }) => {
           height: 100%;
           object-fit: cover;
           transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          border-radius: 0;
         }
 
         .project-card:hover .project-image img {
@@ -120,8 +125,6 @@ const ProjectCard = ({ project, onClick }) => {
         .project-card:hover .overlay-content {
           transform: translateY(0);
         }
-
-        
 
         .project-technologies {
           display: flex;

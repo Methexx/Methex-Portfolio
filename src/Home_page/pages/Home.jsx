@@ -12,19 +12,19 @@ const Home = () => {
 
   const projects = [
     {
-      id: 1,
+      id: "1", // Changed to string to match your projectData
       title: "ABC Cinema Movie Ticket Booking System",
       description: "A Java-based web app for booking movie tickets with an admin dashboard.",
       technologies: ["React", "Java", "MySQL", "Spring Boot"]
     },
     {
-      id: 2,
+      id: "2", // Changed to string to match your projectData
       title: "E-Commerce Platform",
       description: "A full-stack e-commerce solution with payment integration and inventory management.",
       technologies: ["Next.js", "Node.js", "MongoDB", "Stripe"]
     },
     {
-      id: 3,
+      id: "3", // Changed to string to match your projectData
       title: "Greenie Social Platform",
       description: "Greenie is a gamified platform that encourages through challenges, rewards, and social engagement.",
       technologies: ["Next.js", "Node.js", "MongoDB", "Stripe"]
@@ -33,9 +33,8 @@ const Home = () => {
 
   const handleProjectClick = (project) => {
     console.log('Project clicked:', project);
-    // Navigate to project detail page
-    // For example: navigate(`/project/${project.id}`);
-    // Or: window.location.href = `/project-details?id=${project.id}`;
+    // Navigate to project detail page using the project ID
+    navigate(`/project/${project.id}`);
   };
 
   const handleAboutClick = () => {

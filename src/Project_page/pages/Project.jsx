@@ -5,6 +5,7 @@ import Navbar from '../../components/layout/Navbar';
 import Footer from '../../components/layout/Footer';
 import Filter from '../components/Filter';
 import ProjectCard from '../components/ProjectCard';
+import projectData from '../../data/projectData'; // Import the centralized project data
 
 const Project = () => {
   const navigate = useNavigate();
@@ -12,73 +13,18 @@ const Project = () => {
 
   const categories = ['All', 'Web', 'Mobile', 'UI Designs'];
 
-  const projects = [
-    {
-      id: 1,
-      title: "ABC Cinema Movie Ticket Booking System",
-      description: "A comprehensive Java-based web application for booking movie tickets ",
-      technologies: ["React", "Java", "MySQL", "Spring Boot"],
-      status: "Completed",
-      category: "Web",
-      image: "https://avatars.githubusercontent.com/u/157824523?v=4"
-    },
-    {
-      id: 2,
-      title: "E-Commerce Platform",
-      description: "A full-stack e-commerce solution with payment integration, inventory management, user authentication, and order tracking.",
-      technologies: ["Next.js", "Node.js", "MongoDB", "Stripe"],
-      status: "In Progress",
-      category: "Web",
-      image: "https://avatars.githubusercontent.com/u/157824523?v=4"
-    },
-    {
-      id: 3,
-      title: "Greenie Social Platform",
-      description: "Greenie is a gamified platform that encourages environmental consciousness through challenges, rewards, and social engagement.",
-      technologies: ["Next.js", "Node.js", "MongoDB", "Stripe"],
-      status: "Completed",
-      category: "Web",
-      image: "https://avatars.githubusercontent.com/u/157824523?v=4"
-    },
-    {
-      id: 4,
-      title: "Mobile Banking App",
-      description: "A secure mobile banking application with biometric authentication, transaction history, and real-time notifications.",
-      technologies: ["React Native", "Firebase", "Node.js"],
-      status: "Completed",
-      category: "Mobile",
-      image: "https://avatars.githubusercontent.com/u/157824523?v=4"
-    },
-    {
-      id: 5,
-      title: "Portfolio Website Design",
-      description: "A modern, responsive portfolio website design with smooth animations and interactive elements.",
-      technologies: ["Figma", "Adobe XD", "Principle"],
-      status: "Completed",
-      category: "UI Designs",
-      image: "https://via.placeholder.com/400x250/8b5cf6/ffffff?text=Portfolio+Design"
-    },
-    {
-      id: 6,
-      title: "Task Management Mobile App",
-      description: "A productivity mobile app for task management with calendar integration and team collaboration features.",
-      technologies: ["Flutter", "Firebase", "Dart"],
-      status: "In Progress",
-      category: "Mobile",
-      image: "https://via.placeholder.com/400x250/ef4444/ffffff?text=Task+Manager"
-    }
-  ];
+  // Use the imported project data instead of duplicating it
+  const projects = projectData;
 
   const filteredProjects = activeFilter === 'All' 
     ? projects 
     : projects.filter(project => project.category === activeFilter);
 
+  // Fixed: Add navigation to project detail page
   const handleProjectClick = (project) => {
     console.log('Project clicked:', project);
-    // Add your project click logic here (e.g., navigate to project details)
+    navigate(`/project/${project.id}`); // Navigate to project detail page
   };
-
- 
 
   const handleFilterChange = (filter) => {
     setActiveFilter(filter);
@@ -92,8 +38,6 @@ const Project = () => {
       {/* Header Section */}
       <header className="project-header">
         <div className="header-content">
-          
-          
           <h1 className="page-title">My Projects</h1>
           <p className="page-description">
             A collection of projects showcasing my skills in full-stack development,
@@ -156,10 +100,6 @@ const Project = () => {
           position: relative;
         }
 
-        
-
-        
-
         .page-title {
           font-size: clamp(2.5rem, 5vw, 4rem);
           font-weight: 500;
@@ -211,12 +151,6 @@ const Project = () => {
             padding-top: 3rem;
           }
 
-          .back-button {
-            position: relative;
-            align-self: flex-start;
-            margin-bottom: 1rem;
-          }
-
           .page-description br {
             display: none;
           }
@@ -239,8 +173,6 @@ const Project = () => {
           .projects-grid {
             gap: 1rem;
           }
-
-          
         }
       `}</style>
     </div>
