@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import ParticlesHome from '../../components/effects/ParticlesHome';
 import Navbar from '../../components/layout/Navbar';
 import Footer from '../../components/layout/Footer';
-import ProjectCard from '../components/Projectcard';
+import ProjectCard from '../components/ProjectCard';
 import profileImage from '../components/dp.jpg';
 import AbtButton from '../components/AbtButton';
 import Spline from '@splinetool/react-spline';
