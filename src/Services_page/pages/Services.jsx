@@ -163,9 +163,9 @@ const Services = () => {
             </div>
           </div>
           
-          {/* Right Spline Container */}
-          <div className="spline-container flex-1 flex justify-center items-center ml-12">
-            <div className="w-90 h-[450px] rounded-lg overflow-hidden">
+          {/* Right Spline Container - Expanded from left side */}
+          <div className="spline-container flex-1 flex justify-center items-center ml-12 -mr-16">
+            <div className="w-[480px] h-[450px] rounded-lg overflow-hidden">
               <Spline scene="https://prod.spline.design/oPGAgGsJguzEKLbH/scene.splinecode" />
             </div>
           </div>
@@ -262,9 +262,7 @@ const Services = () => {
           font-family: inherit;
         }
 
-        .contact-btn:hover {
-          font-weight: 800;
-        }
+        
 
         @keyframes slide {
           0% {
@@ -285,10 +283,12 @@ const Services = () => {
           .spline-container {
             margin-left: 0;
             margin-top: 3rem;
+            margin-right: 0;
           }
           
           .spline-container > div {
             height: 380px;
+            width: 400px;
           }
         }
 
