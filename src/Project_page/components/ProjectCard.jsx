@@ -8,16 +8,21 @@ const ProjectCard = ({ project, onClick }) => {
     image
   } = project;
 
-  // Use the provided GitHub avatar as fallback if project doesn't have an image
-  const projectImage = image || 'https://avatars.githubusercontent.com/u/157824523?v=4';
-
   return (
     <div 
       className="project-card"
       onClick={() => onClick(project)}
     >
       <div className="project-image">
-        <img src={projectImage} alt={title} />
+        {image ? (
+          <img src={image} alt={title} />
+        ) : (
+          <div className="placeholder-image">
+            <div className="placeholder-content">
+              <span className="placeholder-text">Project Image</span>
+            </div>
+          </div>
+        )}
       </div>
       <div className="project-content">
         <div className="project-header-info">
@@ -93,6 +98,49 @@ const ProjectCard = ({ project, onClick }) => {
 
         .project-card:hover .project-image img {
           transform: scale(1.1);
+        }
+
+        .placeholder-image {
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(135deg, #262624 0%, #1f1f1d 100%);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .project-card:hover .placeholder-image {
+          background: linear-gradient(135deg, #2a2a28 0%, #232321 100%);
+          transform: scale(1.1);
+        }
+
+        .placeholder-content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          color: rgba(255, 255, 255, 0.7);
+          transition: all 0.3s ease;
+        }
+
+        .project-card:hover .placeholder-content {
+          color: rgba(255, 255, 255, 0.9);
+          transform: scale(1.1);
+        }
+
+        .placeholder-icon {
+          font-size: 2rem;
+          margin-bottom: 0.5rem;
+          opacity: 0.8;
+        }
+
+        .placeholder-text {
+          font-size: 0.9rem;
+          font-weight: 500;
+          opacity: 0.9;
+          letter-spacing: 0.5px;
         }
 
         .project-overlay {

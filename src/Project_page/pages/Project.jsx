@@ -10,7 +10,9 @@ import projectData from '../../data/projectData'; // Import the centralized proj
 const Project = () => {
   const navigate = useNavigate();
   const [activeFilter, setActiveFilter] = useState('All');
-
+  const [currentPage, setCurrentPage] = useState(1);
+  
+  const PROJECTS_PER_PAGE = 6; // 2 rows × 3 columns
   const categories = ['All', 'Web', 'Mobile', 'UI Designs'];
 
   // Use the imported project data instead of duplicating it
@@ -20,6 +22,28 @@ const Project = () => {
     ? projects 
     : projects.filter(project => project.category === activeFilter);
 
+  // Calculate pagination
+  const totalPages = Math.ceil(filteredProjects.length / PROJECTS_PER_PAGE);
+  
+  // Ensure currentPage is within valid range
+  const validCurrentPage = Math.min(Math.max(1, currentPage), totalPages || 1);
+  
+  const startIndex = (validCurrentPage - 1) * PROJECTS_PER_PAGE;
+  const endIndex = startIndex + PROJECTS_PER_PAGE;
+  const currentProjects = filteredProjects.slice(startIndex, endIndex);
+
+  console.log('Pagination Debug:', {
+    activeFilter,
+    currentPage,
+    validCurrentPage,
+    totalProjects: filteredProjects.length,
+    totalPages,
+    startIndex,
+    endIndex,
+    currentProjectsCount: currentProjects.length,
+    currentProjectIds: currentProjects.map(p => p.id)
+  });
+
   // Fixed: Add navigation to project detail page
   const handleProjectClick = (project) => {
     console.log('Project clicked:', project);
@@ -28,6 +52,21 @@ const Project = () => {
 
   const handleFilterChange = (filter) => {
     setActiveFilter(filter);
+    setCurrentPage(1); // Reset to first page when filter changes
+  };
+
+  const handlePageChange = (pageNumber) => {
+    console.log('Page change requested:', pageNumber);
+    if (pageNumber >= 1 && pageNumber <= totalPages) {
+      setCurrentPage(pageNumber);
+      // Scroll to top of projects section
+      setTimeout(() => {
+        document.querySelector('.projects-main')?.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }, 100);
+    }
   };
 
   return (
@@ -56,15 +95,43 @@ const Project = () => {
       {/* Projects Grid Section */}
       <main className="projects-main">
         <div className="projects-container">
-          <div className="projects-grid">
-            {filteredProjects.map((project) => (
+          {/* Projects Count Info */}
+          <div className="projects-info">
+            <p className="projects-count">
+              Showing {currentProjects.length} of {filteredProjects.length} projects
+              {activeFilter !== 'All' && ` in ${activeFilter}`}
+            </p>
+          </div>
+
+          <div className="projects-grid" key={`page-${validCurrentPage}-filter-${activeFilter}`}>
+            {currentProjects.map((project, index) => (
               <ProjectCard
-                key={project.id}
+                key={`${project.id}-${validCurrentPage}-${index}`}
                 project={project}
                 onClick={handleProjectClick}
               />
             ))}
           </div>
+
+          {/* Pagination Component */}
+          {totalPages > 1 && (
+            <div className="pagination">
+              <div className="pagination-numbers">
+                {[...Array(totalPages)].map((_, index) => {
+                  const pageNumber = index + 1;
+                  return (
+                    <button
+                      key={pageNumber}
+                      className={`pagination-number ${validCurrentPage === pageNumber ? 'active' : ''}`}
+                      onClick={() => handlePageChange(pageNumber)}
+                    >
+                      {pageNumber}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
         </div>
       </main>
 
@@ -129,11 +196,85 @@ const Project = () => {
           margin: 0 auto;
         }
 
+        .projects-info {
+          margin-bottom: 2rem;
+          text-align: center;
+        }
+
+        .projects-count {
+          color: rgba(255, 255, 255, 0.6);
+          font-size: 0.9rem;
+          font-weight: 300;
+        }
+
         .projects-grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
           gap: 2rem;
           justify-items: center;
+          margin-bottom: 3rem;
+        }
+
+        /* Pagination Styles */
+        .pagination {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 1rem;
+          margin-top: 3rem;
+          flex-wrap: wrap;
+        }
+
+        .pagination-numbers {
+          display: flex;
+          gap: 0.5rem;
+          align-items: center;
+        }
+
+        .pagination-number {
+          background: rgba(255, 255, 255, 0.1);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          color: white;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          cursor: pointer;
+          font-size: 0.9rem;
+          font-weight: 500;
+          transition: all 0.3s ease;
+          backdrop-filter: blur(10px);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          outline: none;
+        }
+
+        .pagination-number:hover {
+          background: rgba(255, 107, 53, 0.2);
+          border-color: rgba(255, 107, 53, 0.4);
+          transform: translateY(-2px);
+        }
+
+        .pagination-number:focus {
+          outline: none;
+          box-shadow: none;
+        }
+
+        .pagination-number.active {
+          background: linear-gradient(135deg, #ff6b35, #f7931e);
+          border-color: #ff6b35;
+          color: white;
+          box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        .pagination-number.active:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        .pagination-number.active:focus {
+          outline: none;
+          box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
         }
 
         /* Mobile responsiveness */
@@ -163,6 +304,16 @@ const Project = () => {
           .projects-main {
             padding: 1rem 1rem 2rem 1rem;
           }
+
+          .pagination {
+            gap: 0.5rem;
+          }
+
+          .pagination-number {
+            width: 35px;
+            height: 35px;
+            font-size: 0.8rem;
+          }
         }
 
         @media (max-width: 480px) {
@@ -172,6 +323,16 @@ const Project = () => {
 
           .projects-grid {
             gap: 1rem;
+          }
+
+          .pagination-numbers {
+            gap: 0.3rem;
+          }
+
+          .pagination-number {
+            width: 32px;
+            height: 32px;
+            font-size: 0.75rem;
           }
         }
       `}</style>
