@@ -12,17 +12,6 @@ const projectData = [
   },
   {
     id: "2",
-    title: "E-Commerce Platform",
-    description: "A full-stack e-commerce solution with payment integration, inventory management, user authentication, and order tracking.",
-    screenshots: [
-      "https://via.placeholder.com/800x600/ef4444/ffffff?text=E-Commerce+Home",
-    ],
-    technologies: ["Next.js", "Node.js", "MongoDB", "Stripe"],
-    category: "Web",
-    details: "A modern e-commerce platform featuring user authentication, product catalog, shopping cart, payment processing with Stripe, order management, and admin dashboard. Built with Next.js for optimal performance and SEO."
-  },
-  {
-    id: "3",
     title: "Greenie Social Platform",
     description: "Greenie is a gamified platform that encourages environmental consciousness through challenges, rewards, and social engagement.",
     screenshots: [
@@ -33,8 +22,19 @@ const projectData = [
     details: "Greenie is a social platform that gamifies environmental consciousness. Users can participate in eco-friendly challenges, earn points and badges, share their progress, and connect with like-minded individuals. Features real-time updates and social interaction."
   },
   {
+    id: "3",
+    title: "E-Commerce Platform",
+    description: "A full-stack e-commerce solution with payment integration, inventory management, user authentication, and order tracking.",
+    screenshots: [
+      "https://via.placeholder.com/800x600/ef4444/ffffff?text=E-Commerce+Home",
+    ],
+    technologies: ["Next.js", "Node.js", "MongoDB", "Stripe"],
+    category: "Web",
+    details: "A modern e-commerce platform featuring user authentication, product catalog, shopping cart, payment processing with Stripe, order management, and admin dashboard. Built with Next.js for optimal performance and SEO."
+  },
+  {
     id: "4",
-    title: "Mobile Banking App",
+    title: "Awurudu Nekath Details & Countdowner App",
     description: "A secure mobile banking application with biometric authentication, transaction history, and real-time notifications.",
     screenshots: [
       "https://via.placeholder.com/400x800/3b82f6/ffffff?text=Banking+Login",
@@ -56,13 +56,35 @@ const projectData = [
   },
   {
     id: "6",
-    title: "Task Management Mobile App",
-    description: "A productivity mobile app for task management with calendar integration and team collaboration features.",
+    title: "WalkWise – Community Location Discovery App",
+    description: "Flutter app for discovering, sharing, and reviewing places in Sri Lanka.",
     screenshots: [
       "https://via.placeholder.com/400x800/ef4444/ffffff?text=Task+Manager",
     ],
     technologies: ["Flutter", "Firebase", "Dart"],
     category: "Mobile",
+    details: "A comprehensive task management mobile app built with Flutter. Features include task creation and assignment, calendar integration, team collaboration, progress tracking, and real-time synchronization across devices."
+  },
+  {
+    id: "7",
+    title: "Movie Ticket Booking System UI",
+    description: "Flutter app for discovering, sharing, and reviewing places in Sri Lanka.",
+    screenshots: [
+      "https://via.placeholder.com/400x800/ef4444/ffffff?text=Task+Manager",
+    ],
+    technologies: ["Flutter", "Firebase", "Dart"],
+    category: "UI Designs",
+    details: "A comprehensive task management mobile app built with Flutter. Features include task creation and assignment, calendar integration, team collaboration, progress tracking, and real-time synchronization across devices."
+  },
+  {
+    id: "8",
+    title: "Mobile Banking App Design for Color Blind Users",
+    description: "Flutter app for discovering, sharing, and reviewing places in Sri Lanka.",
+    screenshots: [
+      "https://via.placeholder.com/400x800/ef4444/ffffff?text=Task+Manager",
+    ],
+    technologies: ["Flutter", "Firebase", "Dart"],
+    category: "UI Designs",
     details: "A comprehensive task management mobile app built with Flutter. Features include task creation and assignment, calendar integration, team collaboration, progress tracking, and real-time synchronization across devices."
   }
 ];

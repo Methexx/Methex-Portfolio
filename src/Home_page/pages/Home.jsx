@@ -7,27 +7,38 @@ import profileImage from '../components/dp.jpg';
 import AbtButton from '../components/AbtButton';
 import Spline from '@splinetool/react-spline';
 
+// Project Images
+import cinemaImage from '../../Assets/Home/abc-cinema.png';
+import ecommerceImage from '../../Assets/Home/walkwise.png';
+import greenieImage from '../../Assets/Home/greenie.jpg';
+
 const Home = () => {
   const navigate = useNavigate();
 
   const projects = [
     {
-      id: "1", // Changed to string to match your projectData
+      id: "1",
       title: "ABC Cinema Movie Ticket Booking System",
       description: "A Java-based web app for booking movie tickets with an admin dashboard.",
-      technologies: ["React", "Java", "MySQL", "Spring Boot"]
+      technologies: ["React", "Java", "MySQL", "Spring Boot"],
+      image: cinemaImage,
+      imageAlt: "ABC Cinema Movie Ticket Booking System screenshot"
     },
     {
-      id: "2", // Changed to string to match your projectData
+      id: "2",
       title: "E-Commerce Platform",
       description: "A full-stack e-commerce solution with payment integration and inventory management.",
-      technologies: ["Next.js", "Node.js", "MongoDB", "Stripe"]
+      technologies: ["Next.js", "Node.js", "MongoDB", "Stripe"],
+      image: ecommerceImage,
+      imageAlt: "E-Commerce Platform screenshot"
     },
     {
-      id: "3", // Changed to string to match your projectData
+      id: "3",
       title: "Greenie Social Platform",
       description: "Greenie is a gamified platform that encourages through challenges, rewards, and social engagement.",
-      technologies: ["Next.js", "Node.js", "MongoDB", "Stripe"]
+      technologies: ["Next.js", "Node.js", "MongoDB", "Stripe"],
+      image: greenieImage,
+      imageAlt: "Greenie Social Platform screenshot"
     }
   ];
 
@@ -90,6 +101,8 @@ const Home = () => {
                 title={project.title}
                 description={project.description}
                 technologies={project.technologies}
+                image={project.image}
+                imageAlt={project.imageAlt}
                 onClick={() => handleProjectClick(project)}
               />
             ))}
