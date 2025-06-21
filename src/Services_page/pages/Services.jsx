@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Spline from '@splinetool/react-spline';
 import ParticlesHome from '../../components/effects/ParticlesHome';
 import Navbar from '../../components/layout/Navbar';
@@ -7,6 +7,83 @@ import BlurText from '../components/BlurText';
 
 
 const Services = () => {
+  const buttonRef = useRef(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
+  const animationRef = useRef();
+  const lerpingData = useRef({
+    x: { current: 0, target: 0 },
+    y: { current: 0, target: 0 }
+  });
+
+  const lerp = (current, target, factor) => 
+    current * (1 - factor) + target * factor;
+
+  const calculateDistance = (x1, y1, x2, y2) => 
+    Math.hypot(x1 - x2, y1 - y2);
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePosition({ x: e.pageX, y: e.pageY });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  useEffect(() => {
+    const button = buttonRef.current;
+    if (!button) return;
+
+    const triggerArea = 200;
+    const interpolationFactor = 0.8;
+
+    const animate = () => {
+      const rect = button.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      
+      const distanceFromMouseToCenter = calculateDistance(
+        mousePosition.x,
+        mousePosition.y,
+        centerX,
+        centerY
+      );
+
+      let targetHolder = { x: 0, y: 0 };
+
+      if (distanceFromMouseToCenter < triggerArea) {
+        setIsHovered(true);
+        targetHolder.x = (mousePosition.x - centerX) * 0.2;
+        targetHolder.y = (mousePosition.y - centerY) * 0.2;
+      } else {
+        setIsHovered(false);
+      }
+
+      lerpingData.current.x.target = targetHolder.x;
+      lerpingData.current.y.target = targetHolder.y;
+
+      for (const item in lerpingData.current) {
+        lerpingData.current[item].current = lerp(
+          lerpingData.current[item].current,
+          lerpingData.current[item].target,
+          interpolationFactor
+        );
+      }
+
+      button.style.transform = `translate(${lerpingData.current.x.current}px, ${lerpingData.current.y.current}px)`;
+      
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [mousePosition]);
   const services = [
     {
       title: "Website Design",
@@ -72,24 +149,18 @@ const Services = () => {
               as="p"
               stepDuration={0.3}
             />
+            <br />
             
             {/* Contact Me Button */}
-            <button 
-              onClick={handleContactClick}
-              className="contact-btn group relative overflow-hidden px-8 py-4 rounded-full font-semibold text-white transition-all duration-300 hover:scale-105 active:scale-95"
-            >
-              <span className="relative z-10 flex items-center gap-2">
+            <div className="mb-8">
+              <button 
+                ref={buttonRef}
+                onClick={handleContactClick}
+                className="contact-btn px-12 py-4 rounded-full transition-all duration-300"
+              >
                 Contact Me
-                <svg 
-                  className="w-5 h-5 transition-transform group-hover:translate-x-1" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </span>
-            </button>
+              </button>
+            </div>
           </div>
           
           {/* Right Spline Container */}
@@ -180,29 +251,19 @@ const Services = () => {
 
         /* Contact Button Styles */
         .contact-btn {
-          background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
-          border: 1px solid rgba(59, 130, 246, 0.3);
-          box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
-          position: relative;
-        }
-
-        .contact-btn::before {
-          content: '';
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(135deg, #1e40af 0%, #059669 100%);
-          border-radius: inherit;
-          opacity: 0;
-          transition: opacity 0.3s ease;
-        }
-
-        .contact-btn:hover::before {
-          opacity: 1;
+          background: white;
+          color: black;
+          font-weight: 700;
+          border: 2px solid black;
+          outline: none;
+          min-width: 160px;
+          text-align: center;
+          cursor: pointer;
+          font-family: inherit;
         }
 
         .contact-btn:hover {
-          box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
-          border-color: rgba(59, 130, 246, 0.6);
+          font-weight: 800;
         }
 
         @keyframes slide {
@@ -247,7 +308,7 @@ const Services = () => {
           }
 
           .contact-btn {
-            padding: 12px 24px;
+            padding: 12px 32px;
             font-size: 14px;
           }
         }
