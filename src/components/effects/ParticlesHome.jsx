@@ -11,7 +11,7 @@ const ParticlesHome = () => {
     if (!canvas) return;
 
     const c = canvas.getContext('2d');
-    const numStars = 1900;
+    const numStars = 2800; // Increased from 1900 for desktop
     let radius = '0.' + Math.floor(Math.random() * 9) + 1;
     let focalLength = canvas.width * 2;
     let centerX, centerY;
@@ -31,8 +31,8 @@ const ParticlesHome = () => {
       centerX = canvas.width / 2;
       centerY = canvas.height / 2;
       
-      // Adjust number of stars for mobile performance
-      const adjustedNumStars = isMobile ? Math.floor(numStars * 0.6) : numStars;
+      // More particles for desktop, same amount for mobile
+      const adjustedNumStars = isMobile ? Math.floor(numStars * 0.6) : numStars; // Desktop gets full 2800, mobile gets ~1680
       
       starsRef.current = [];
       for (let i = 0; i < adjustedNumStars; i++) {
