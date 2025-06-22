@@ -312,9 +312,15 @@ const Home = () => {
             display: none;
           }
 
+          .projects-section {
+            padding: 4rem 2rem; /* Increased side padding for mobile */
+          }
+
           .projects-grid {
             grid-template-columns: 1fr;
-            gap: 1.5rem;
+            gap: 2.5rem; /* Increased gap between cards */
+            padding: 0;
+            max-width: 100%;
           }
 
           .cta-button {
@@ -325,6 +331,7 @@ const Home = () => {
           .view-all-container {
             justify-content: center;
             margin-top: 1rem;
+            padding: 0 1rem;
           }
         }
 
@@ -337,13 +344,28 @@ const Home = () => {
             min-height: calc(100vh - 60px);
           }
 
+          .projects-section {
+            padding: 3rem 1.5rem; /* Increased padding to prevent card cutoff */
+          }
+
           .projects-grid {
             grid-template-columns: 1fr;
-            gap: 1rem;
+            gap: 3rem; /* Increased spacing between cards on small screens */
+            padding: 0;
+            width: 100%;
+            max-width: 100%;
+          }
+
+          .projects-title {
+            margin-bottom: 3rem;
           }
 
           .view-all-button {
             font-size: 0.9rem;
+          }
+
+          .view-all-container {
+            padding: 0 1rem; /* Increased padding */
           }
         }
       `}</style>

@@ -92,22 +92,47 @@ const ProjectCard = ({
           transform-origin: center bottom;
         }
 
-        .project-card:hover {
-          transform: translateY(-12px) scale(1.02);
-          box-shadow: inset 0 2px 2px 0 rgba(231, 196, 160, 0.6), 
-                      inset 0 -2px 2px 0 rgba(0, 0, 0, 0.3),
-                      0 8px 40px rgba(0, 0, 0, 0.4),
-                      0 0 0 1px rgba(255, 255, 255, 0.2);
-          border-color: rgba(255, 255, 255, 0.3);
-        }
+        /* Desktop hover effects */
+        @media (hover: hover) and (pointer: fine) {
+          .project-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: inset 0 2px 2px 0 rgba(231, 196, 160, 0.6), 
+                        inset 0 -2px 2px 0 rgba(0, 0, 0, 0.3),
+                        0 8px 40px rgba(0, 0, 0, 0.4),
+                        0 0 0 1px rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+          }
 
-        .project-card:hover .top-light {
-          box-shadow:
-            0 0px 2px 2px #ffc78e,
-            0 2px 4px 2px rgba(255, 148, 41, 0.6),
-            0 4px 12px 2px rgba(233, 139, 45, 0.6),
-            0 8px 20px 2px rgba(255, 158, 61, 0.7),
-            0 16px 30px 16px rgba(255, 128, 0, 0.4);
+          .project-card:hover .top-light {
+            box-shadow:
+              0 0px 2px 2px #ffc78e,
+              0 2px 4px 2px rgba(255, 148, 41, 0.6),
+              0 4px 12px 2px rgba(233, 139, 45, 0.6),
+              0 8px 20px 2px rgba(255, 158, 61, 0.7),
+              0 16px 30px 16px rgba(255, 128, 0, 0.4);
+          }
+
+          .project-card:hover .project-img {
+            transform: scale(1.05);
+          }
+
+          .project-card:hover .project-image::after {
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2));
+          }
+
+          .project-card:hover .project-name {
+            color: #ffc78e;
+          }
+
+          .project-card:hover .project-description {
+            color: rgba(255, 255, 255, 0.9);
+          }
+
+          .project-card:hover .tech-tag {
+            background: rgba(255, 199, 142, 0.2);
+            color: rgba(255, 255, 255, 0.95);
+            border-color: rgba(255, 199, 142, 0.3);
+          }
         }
 
         .project-card:active {
@@ -134,10 +159,6 @@ const ProjectCard = ({
           transition: all 0.3s ease;
         }
 
-        .project-card:hover .project-img {
-          transform: scale(1.05);
-        }
-
         .project-placeholder {
           width: 100%;
           height: 100%;
@@ -158,10 +179,6 @@ const ProjectCard = ({
           transition: all 0.3s ease;
         }
 
-        .project-card:hover .project-image::after {
-          background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2));
-        }
-
         .project-content {
           flex: 1;
           display: flex;
@@ -179,10 +196,6 @@ const ProjectCard = ({
           transition: all 0.3s ease;
         }
 
-        .project-card:hover .project-name {
-          color: #ffc78e;
-        }
-
         .project-description {
           font-size: 1rem;
           font-weight: 400;
@@ -190,10 +203,6 @@ const ProjectCard = ({
           line-height: 1.5;
           margin: 0 0 20px 0;
           transition: all 0.3s ease;
-        }
-
-        .project-card:hover .project-description {
-          color: rgba(255, 255, 255, 0.9);
         }
 
         .tech-stack {
@@ -214,35 +223,45 @@ const ProjectCard = ({
           transition: all 0.3s ease;
         }
 
-        .project-card:hover .tech-tag {
-          background: rgba(255, 199, 142, 0.2);
-          color: rgba(255, 255, 255, 0.95);
-          border-color: rgba(255, 199, 142, 0.3);
-        }
-
         /* Mobile responsiveness */
         @media (max-width: 768px) {
           .project-card {
             min-height: 400px;
             max-width: 100%;
+            margin: 0 16px;
           }
 
-          .project-card:hover {
-            transform: translateY(-8px) scale(1.01);
+          .top-light {
+            width: 250px;
           }
         }
 
         @media (max-width: 480px) {
           .project-card {
             min-height: 380px;
+            margin: 0 12px;
+            padding: 20px;
           }
 
           .project-image {
             height: 150px;
           }
 
-          .project-card:hover {
-            transform: translateY(-6px) scale(1.005);
+          .top-light {
+            width: 200px;
+          }
+
+          .project-name {
+            font-size: 1.2rem;
+          }
+
+          .project-description {
+            font-size: 0.9rem;
+          }
+
+          .tech-tag {
+            font-size: 0.8rem;
+            padding: 0.3rem 0.6rem;
           }
         }
       `}</style>
