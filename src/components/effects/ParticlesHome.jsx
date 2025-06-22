@@ -4,6 +4,7 @@ const ParticlesHome = () => {
   const canvasRef = useRef(null);
   const animationRef = useRef(null);
   const starsRef = useRef([]);
+  const lastTimeRef = useRef(0);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -15,13 +16,26 @@ const ParticlesHome = () => {
     let focalLength = canvas.width * 2;
     let centerX, centerY;
     let animate = true;
+    
+    // Detect if device is mobile
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+    
+    // Speed in pixels per second, normalized for screen size
+    const getBaseSpeed = () => {
+      const screenWidth = window.innerWidth;
+      const normalizedSpeed = (screenWidth / 1920) * 200; // Increased from 150 to 200
+      return Math.max(normalizedSpeed, 100); // Increased minimum from 80 to 100
+    };
 
     const initializeStars = () => {
       centerX = canvas.width / 2;
       centerY = canvas.height / 2;
       
+      // Adjust number of stars for mobile performance
+      const adjustedNumStars = isMobile ? Math.floor(numStars * 0.6) : numStars;
+      
       starsRef.current = [];
-      for (let i = 0; i < numStars; i++) {
+      for (let i = 0; i < adjustedNumStars; i++) {
         const star = {
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
@@ -37,12 +51,16 @@ const ParticlesHome = () => {
       }
     };
 
-    const moveStars = () => {
-      for (let i = 0; i < numStars; i++) {
+    const moveStars = (deltaTime) => {
+      // Convert deltaTime from milliseconds to seconds
+      const deltaSeconds = deltaTime / 1000;
+      const currentSpeed = getBaseSpeed();
+      
+      for (let i = 0; i < starsRef.current.length; i++) {
         const star = starsRef.current[i];
         
-        // Normal z-movement
-        star.z -= 7;
+        // Use delta time and screen-normalized speed for consistent movement
+        star.z -= currentSpeed * deltaSeconds;
         
         if (star.z <= 0) {
           star.z = canvas.width;
@@ -69,7 +87,7 @@ const ParticlesHome = () => {
 
       c.fillStyle = `rgba(209, 255, 255, ${radius})`;
       
-      for (let i = 0; i < numStars; i++) {
+      for (let i = 0; i < starsRef.current.length; i++) {
         const star = starsRef.current[i];
         
         pixelX = (star.x - centerX) * (focalLength / star.z);
@@ -83,11 +101,20 @@ const ParticlesHome = () => {
       }
     };
 
-    const executeFrame = () => {
+    const executeFrame = (currentTime) => {
       if (animate) {
         animationRef.current = requestAnimationFrame(executeFrame);
       }
-      moveStars();
+      
+      // Calculate delta time
+      const deltaTime = currentTime - lastTimeRef.current;
+      lastTimeRef.current = currentTime;
+      
+      // Skip first frame to avoid large delta
+      if (deltaTime < 100) { // Only update if delta is reasonable (less than 100ms)
+        moveStars(deltaTime);
+      }
+      
       drawStars();
     };
 
@@ -96,7 +123,10 @@ const ParticlesHome = () => {
     canvas.height = window.innerHeight;
     
     initializeStars();
-    executeFrame();
+    
+    // Start animation with initial timestamp
+    lastTimeRef.current = performance.now();
+    executeFrame(lastTimeRef.current);
 
     // Handle window resize
     const handleResize = () => {
@@ -139,6 +169,13 @@ const ParticlesHome = () => {
           width: 100%;
           height: 100%;
           display: block;
+        }
+
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+          .particles-container {
+            image-rendering: auto; /* Better rendering on mobile */
+          }
         }
       `}</style>
 
