@@ -386,6 +386,27 @@
   transform: scale(1.05);
 }
 
+.text-back-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 0;
+  transition: color 0.2s ease;
+  outline: none; /* ✨ removes the default focus outline */
+}
+
+.text-back-button:hover {
+  color: #d99e09;/* bold is not valid for text-decoration */
+}
+
+.text-back-button:focus {
+  outline: none; /* 🔥 just in case focus triggers it */
+}
+
 .bottom-back-container {
   display: flex;
   justify-content: center;
@@ -393,27 +414,7 @@
   margin-bottom: 2rem;
 }
 
-.bottom-back-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: white;
-  padding: 0.8rem 2rem;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 1rem;
-  font-weight: 500;
-  backdrop-filter: blur(10px);
-}
 
-.bottom-back-button:hover {
-  background: rgba(139, 92, 246, 0.2);
-  border-color: rgba(139, 92, 246, 0.4);
-  transform: translateY(-2px);
-}
 
 .not-found {
   text-align: center;
