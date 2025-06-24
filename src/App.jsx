@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ScrollToTop from './components/layout/ScrollToTop'; // ✅ Import the scroll behavior
+
 import Home from "./Home_page/pages/Home";
 import About from "./About_page/pages/About";
 import Project from "./Project_page/pages/Project";
@@ -11,6 +13,7 @@ import './App.css';
 function App() {
   return (
     <Router>
+      <ScrollToTop /> {/* ✅ Scroll to top on every route change */}
       <div className="app-wrapper">
         <Routes>
           <Route path="/" element={<Home />} />
