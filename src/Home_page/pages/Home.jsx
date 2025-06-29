@@ -25,7 +25,7 @@ const Home = () => {
       imageAlt: "ABC Cinema Movie Ticket Booking System screenshot"
     },
     {
-      id: "2",
+      id: "3",
       title: "E-Commerce Platform",
       description: "A full-stack e-commerce solution with payment integration and inventory management.",
       technologies: ["Next.js", "Node.js", "MongoDB", "Stripe"],
@@ -33,7 +33,7 @@ const Home = () => {
       imageAlt: "E-Commerce Platform screenshot"
     },
     {
-      id: "3",
+      id: "2",
       title: "Greenie Social Platform",
       description: "Greenie is a gamified platform that encourages through challenges, rewards, and social engagement.",
       technologies: ["Next.js", "Node.js", "MongoDB", "Stripe"],
