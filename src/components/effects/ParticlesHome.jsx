@@ -11,7 +11,7 @@ const ParticlesHome = () => {
     if (!canvas) return;
 
     const c = canvas.getContext('2d');
-    const numStars = 20000;
+    const numStars = 50000;
     let radius = '0.' + Math.floor(Math.random() * 9) + 1;
     let focalLength = canvas.width * 2;
     let centerX, centerY;
