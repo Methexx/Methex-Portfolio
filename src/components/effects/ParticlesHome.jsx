@@ -23,8 +23,8 @@ const ParticlesHome = () => {
     // Speed in pixels per second, normalized for screen size
     const getBaseSpeed = () => {
       const screenWidth = window.innerWidth;
-      const normalizedSpeed = (screenWidth / 1920) * 200;
-      return Math.max(normalizedSpeed, 100);
+      const normalizedSpeed = (screenWidth / 1920) * 50; // Reduced from 200 to 50 for slower movement
+      return Math.max(normalizedSpeed, 25); // Reduced minimum from 100 to 25
     };
 
     const initializeStars = () => {
