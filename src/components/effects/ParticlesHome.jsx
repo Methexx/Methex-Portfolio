@@ -11,7 +11,7 @@ const ParticlesHome = () => {
     if (!canvas) return;
 
     const c = canvas.getContext('2d');
-    const numStars = 20000; // Increased from 1900 for desktop
+    const numStars = 20000;
     let radius = '0.' + Math.floor(Math.random() * 9) + 1;
     let focalLength = canvas.width * 2;
     let centerX, centerY;
@@ -23,16 +23,15 @@ const ParticlesHome = () => {
     // Speed in pixels per second, normalized for screen size
     const getBaseSpeed = () => {
       const screenWidth = window.innerWidth;
-      const normalizedSpeed = (screenWidth / 1920) * 200; // Increased from 150 to 200
-      return Math.max(normalizedSpeed, 100); // Increased minimum from 80 to 100
+      const normalizedSpeed = (screenWidth / 1920) * 200;
+      return Math.max(normalizedSpeed, 100);
     };
 
     const initializeStars = () => {
       centerX = canvas.width / 2;
       centerY = canvas.height / 2;
       
-      // More particles for desktop, same amount for mobile
-      const adjustedNumStars = isMobile ? Math.floor(numStars * 0.6) : numStars; // Desktop gets full 2800, mobile gets ~1680
+      const adjustedNumStars = isMobile ? Math.floor(numStars * 0.6) : numStars;
       
       starsRef.current = [];
       for (let i = 0; i < adjustedNumStars; i++) {
@@ -52,8 +51,9 @@ const ParticlesHome = () => {
     };
 
     const moveStars = (deltaTime) => {
-      // Convert deltaTime from milliseconds to seconds
-      const deltaSeconds = deltaTime / 1000;
+      // Cap deltaTime to prevent large jumps during scroll events
+      const cappedDelta = Math.min(deltaTime, 33); // Cap at ~30fps worth of time
+      const deltaSeconds = cappedDelta / 1000;
       const currentSpeed = getBaseSpeed();
       
       for (let i = 0; i < starsRef.current.length; i++) {
@@ -73,7 +73,7 @@ const ParticlesHome = () => {
     const drawStars = () => {
       let pixelX, pixelY, pixelRadius;
       
-      // Resize to the screen
+      // Only resize if dimensions actually changed (prevents unnecessary reinitialization)
       if (canvas.width !== window.innerWidth || canvas.height !== window.innerHeight) {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
@@ -81,7 +81,7 @@ const ParticlesHome = () => {
         initializeStars();
       }
 
-      // Always clear and fill background with pure black
+      // Clear background
       c.fillStyle = "rgba(0,0,0,1)";
       c.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -102,23 +102,23 @@ const ParticlesHome = () => {
     };
 
     const executeFrame = (currentTime) => {
-      if (animate) {
-        animationRef.current = requestAnimationFrame(executeFrame);
-      }
+      if (!animate) return;
+      
+      animationRef.current = requestAnimationFrame(executeFrame);
       
       // Calculate delta time
       const deltaTime = currentTime - lastTimeRef.current;
       lastTimeRef.current = currentTime;
       
-      // Skip first frame to avoid large delta
-      if (deltaTime < 100) { // Only update if delta is reasonable (less than 100ms)
+      // Skip first frame to avoid large delta, and cap maximum delta
+      if (deltaTime > 0 && deltaTime < 100) { 
         moveStars(deltaTime);
       }
       
       drawStars();
     };
 
-    // Initialize canvas size
+    // Initialize canvas size and context optimizations
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     
@@ -128,15 +128,19 @@ const ParticlesHome = () => {
     lastTimeRef.current = performance.now();
     executeFrame(lastTimeRef.current);
 
-    // Handle window resize
+    // Debounced resize handler to prevent excessive reinitialization
+    let resizeTimeout;
     const handleResize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      focalLength = canvas.width * 2;
-      initializeStars();
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        focalLength = canvas.width * 2;
+        initializeStars();
+      }, 100);
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize, { passive: true });
 
     // Cleanup function
     return () => {
@@ -145,6 +149,7 @@ const ParticlesHome = () => {
         cancelAnimationFrame(animationRef.current);
       }
       window.removeEventListener('resize', handleResize);
+      clearTimeout(resizeTimeout);
     };
   }, []);
 
@@ -163,18 +168,24 @@ const ParticlesHome = () => {
           font-family: sans-serif;
           overflow: hidden;
           z-index: 0;
+          /* Improve GPU acceleration */
+          will-change: transform;
+          transform: translateZ(0);
         }
 
         .particles-canvas {
           width: 100%;
           height: 100%;
           display: block;
+          /* GPU acceleration for canvas */
+          transform: translateZ(0);
+          will-change: transform;
         }
 
         /* Mobile optimizations */
         @media (max-width: 768px) {
           .particles-container {
-            image-rendering: auto; /* Better rendering on mobile */
+            image-rendering: auto;
           }
         }
       `}</style>
