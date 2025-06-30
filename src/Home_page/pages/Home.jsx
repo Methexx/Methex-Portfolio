@@ -26,9 +26,9 @@ const Home = () => {
     },
     {
       id: "3",
-      title: "E-Commerce Platform",
-      description: "A full-stack e-commerce solution with payment integration and inventory management.",
-      technologies: ["Next.js", "Node.js", "MongoDB", "Stripe"],
+      title: "WalkWise – Community Location Discovery App",
+      description: "WalkWise is a community-driven location discovery mobile app built with Flutter.",
+      technologies: ["Flutter", "Supabase", "OpenStreetMap", "flutter_map", "Provider"],
       image: ecommerceImage,
       imageAlt: "E-Commerce Platform screenshot"
     },

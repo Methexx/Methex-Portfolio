@@ -7,23 +7,23 @@ const projectData = [
   {
     id: "1",
     title: "ABC Cinema Movie Ticket Booking System",
-    description: "A comprehensive Java-based web application for booking movie tickets",
+    description: "ABC Cinema is a full-featured web application built to simplify online movie ticket booking. Created as part of a second-year university project, it includes dedicated interfaces for both regular users and administrators to perform their respective tasks smoothly.",
     image: abcCinemaImg,
-    technologies: ["React", "Java", "MySQL", "Spring Boot"],
+    technologies: ["JSP", "Java", "Servlets", "HTML", " CSS", "JavaScript", "MySQL", "MariaDB"],
     category: "Web",
     screenshots: [
       abcCinemaImg,
-      "https://via.placeholder.com/800x600/262624/ffffff?text=ABC+Cinema+Dashboard",
-      "https://via.placeholder.com/800x600/262624/ffffff?text=Seat+Selection",
-      "https://via.placeholder.com/800x600/262624/ffffff?text=Payment+Gateway",
-      "https://via.placeholder.com/800x600/262624/ffffff?text=Admin+Panel"
+      "https://i.pinimg.com/736x/62/3d/06/623d0614666d6343b160caee46ba37c0.jpg",
+      "https://i.pinimg.com/736x/62/3d/06/623d0614666d6343b160caee46ba37c0.jpg",
+      "https://i.pinimg.com/736x/62/3d/06/623d0614666d6343b160caee46ba37c0.jpg",
+      "https://i.pinimg.com/736x/62/3d/06/623d0614666d6343b160caee46ba37c0.jpg"
     ],
-    details: "This comprehensive movie ticket booking system allows users to browse movies, select seats, and make secure payments. Built with Java Spring Boot backend and React frontend, it features real-time seat availability, multiple payment options, and admin dashboard for movie management.",
+    details: "ABC Cinema is an online movie ticket reservation system built using Java Servlets and JSP. It offers a user-friendly interface for customers to view available movies and book tickets, while providing administrators with a dedicated dashboard to oversee movie listings, user management, and booking records.",
     
     // My Contribution Section
     contributions: {
       title: "🚀 My Role & Contributions",
-      description: "As the lead developer on this project, I was responsible for the complete development lifecycle from concept to deployment.",
+      description: "As the developer on this project, I was responsible for the complete ui design and frontend development from concept to deployment..",
       responsibilities: [
         "Designed and implemented the complete system architecture using Java Spring Boot and React",
         "Developed real-time seat booking functionality with conflict resolution",
@@ -84,7 +84,7 @@ const projectData = [
     category: "Web",
     screenshots: [
       greenieImg,
-      "https://via.placeholder.com/800x600/262624/ffffff?text=Greenie+Home",
+      "https://drive.google.com/file/d/1GJQeAA01yW90zgyT_YvvTP5oqZRm_b1U/view?usp=drive_link",
       "https://via.placeholder.com/800x600/262624/ffffff?text=Challenges+Page",
       "https://via.placeholder.com/800x600/262624/ffffff?text=Leaderboard",
       "https://via.placeholder.com/800x600/262624/ffffff?text=User+Profile"
@@ -145,10 +145,14 @@ const projectData = [
       }
     }
   },
+
+
+
+
   {
     id: "3",
     title: "WalkWise – Community Location Discovery App",
-    description: "Flutter app for discovering, sharing, and reviewing places in Sri Lanka.",
+    description: "WalkWise is a location-based mobile application developed using Flutter, designed to help users discover and share places within Sri Lanka. Centered around a community-driven experience, it features an interactive map, real-time location tracking, user-contributed reviews, and tools for managing personal place lists.",
     image: walkWiseImg,
     technologies: ["Flutter", "Firebase", "Dart"],
     category: "Mobile",
@@ -159,7 +163,7 @@ const projectData = [
       "https://via.placeholder.com/400x800/262624/ffffff?text=Reviews+Page",
       "https://via.placeholder.com/400x800/262624/ffffff?text=Map+View"
     ],
-    details: "A comprehensive location discovery app for Sri Lanka that allows users to discover hidden gems, share their favorite places, and connect with the local community through reviews and recommendations.",
+    details: "WalkWise is a mobile-centric location discovery app developed using Flutter, aimed at helping users find, review, and share nearby spots. Specially designed for Sri Lanka, it delivers a smooth user experience through interactive maps, intuitive navigation, and a clean, modern interface.",
     
     // No contribution section for this project (will be hidden)
     contributions: null,
@@ -187,9 +191,9 @@ const projectData = [
         title: "🛠️ Development Stack",
         items: [
           "Framework: Flutter for cross-platform development",
-          "Backend: Firebase for authentication and database",
-          "Maps: Google Maps API integration",
-          "Storage: Firebase Storage for images"
+          "Backend: Supabse for authentication and database",
+          "Maps: OpenStreetMap (Map tiles)",
+          "flutter_map, Provider, http"
         ]
       },
       architecture: {
