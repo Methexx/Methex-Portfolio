@@ -188,7 +188,7 @@ const projectData = [
         ]
       },
       technologiesUsed: {
-        title: "🛠️ Development Stack",
+        title: "🛠️ Development Stack ",
         items: [
           "Framework: Flutter for cross-platform development",
           "Backend: Supabse for authentication and database",
