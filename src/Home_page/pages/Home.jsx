@@ -7,6 +7,7 @@ import profileImage from '../components/dp.jpg';
 import AbtButton from '../components/AbtButton';
 import Spline from '@splinetool/react-spline';
 
+
 // Project Images
 import cinemaImage from '../../Assets/Home/abc-cinema.png';
 import ecommerceImage from '../../Assets/Home/walkwise.png';
@@ -121,6 +122,8 @@ const Home = () => {
           </div>
            <Spline scene="https://prod.spline.design/VqpGnZ70d41cL6lg/scene.splinecode" />
         </div>
+
+         
       </section>
 
       <Footer />
