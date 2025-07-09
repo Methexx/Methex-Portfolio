@@ -116,7 +116,7 @@ const Home = () => {
               onClick={handleViewAllClick}
               aria-label="View all projects"
             >
-              View All
+              View All 
               <span className="arrow">→</span>
             </button>
           </div>
