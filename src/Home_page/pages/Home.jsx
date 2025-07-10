@@ -108,7 +108,7 @@ const Home = () => {
               />
             ))}
           </div>
-          
+           
           {/* View All Button */}
           <div className="view-all-container">
             <button 
