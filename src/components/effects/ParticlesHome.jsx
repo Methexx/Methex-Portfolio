@@ -16,7 +16,7 @@ const ParticlesHome = () => {
     // Detect if device is mobile
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
     
-    const numStars = isMobile ? 8000 : 15000;
+    const numStars = isMobile ? 8000 : 45000;
     let radius = '0.' + Math.floor(Math.random() * 9) + 1;
     let focalLength;
     let centerX, centerY;
@@ -26,7 +26,7 @@ const ParticlesHome = () => {
     // Speed in pixels per second, normalized for screen size
     const getBaseSpeed = () => {
       const screenWidth = window.innerWidth;
-      const normalizedSpeed = (screenWidth / 1920) * 50; // Reduced from 200 to 50 for slower movement
+      const normalizedSpeed = (screenWidth / 1920) * 100; // Reduced from 200 to 50 for slower movement
       return Math.max(normalizedSpeed, 25); // Reduced minimum from 100 to 25
     };
 
