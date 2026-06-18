@@ -6,22 +6,24 @@ const ParticlesHome = () => {
   const starsRef = useRef([]);
   const lastTimeRef = useRef(0);
   const isFirstFrameRef = useRef(true);
+  const lastScrollTimeRef = useRef(0);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
     const c = canvas.getContext('2d');
+    if (!c) return;
     
     // Detect if device is mobile
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
-    
-    const numStars = isMobile ? 8000 : 45000;
-    let radius = '0.' + Math.floor(Math.random() * 9) + 1;
+    const opacityLevels = [0.2, 0.35, 0.5, 0.65, 0.8, 0.95];
+    const opacityPalette = opacityLevels.map((opacity) => `rgba(209, 255, 255, ${opacity})`);
     let focalLength;
     let centerX, centerY;
     let animate = true;
     let isVisible = true;
+    let lastRenderTime = 0;
     
     // Speed in pixels per second, normalized for screen size
     const getBaseSpeed = () => {
@@ -29,6 +31,16 @@ const ParticlesHome = () => {
       const normalizedSpeed = (screenWidth / 1920) * 100; // Reduced from 200 to 50 for slower movement
       return Math.max(normalizedSpeed, 25); // Reduced minimum from 100 to 25
     };
+
+    const getStarCount = () => {
+      const viewportArea = window.innerWidth * window.innerHeight;
+      const density = isMobile ? 0.0018 : 0.0028;
+      const minStars = isMobile ? 900 : 2400;
+      const maxStars = isMobile ? 1700 : 5200;
+      return Math.max(minStars, Math.min(maxStars, Math.floor(viewportArea * density)));
+    };
+
+    let numStars = getStarCount();
 
     const initializeStars = () => {
       centerX = canvas.width / 2;
@@ -42,7 +54,7 @@ const ParticlesHome = () => {
           x: x,
           y: y,
           z: Math.random() * canvas.width,
-          o: '0.' + Math.floor(Math.random() * 99) + 1,
+          color: opacityPalette[Math.floor(Math.random() * opacityPalette.length)],
           originalX: x,
           originalY: y
         };
@@ -87,7 +99,7 @@ const ParticlesHome = () => {
         pixelY = (star.y - centerY) * depthRatio + centerY;
         pixelRadius = 0.15 * depthRatio;
         
-        c.fillStyle = `rgba(209, 255, 255, ${star.o})`;
+        c.fillStyle = star.color;
         c.fillRect(pixelX, pixelY, pixelRadius, pixelRadius);
       }
     };
@@ -109,9 +121,21 @@ const ParticlesHome = () => {
       const deltaTime = currentTime - lastTimeRef.current;
       lastTimeRef.current = currentTime;
       
-      // Only update if deltaTime is reasonable (prevents jumps on tab switch/scroll lag)
-      if (deltaTime > 0 && deltaTime < 200) { 
-        moveStars(deltaTime);
+      // Update with capped deltaTime to prevent jumps on lag but keep moving
+      // Cap at 200ms to avoid huge jumps on tab switch, but use actual deltaTime
+      // so speed remains constant even if framerate drops during scrolling
+      const effectiveDelta = Math.min(deltaTime, 200); 
+      const isScrolling = currentTime - lastScrollTimeRef.current < 120;
+      const frameInterval = isScrolling ? 33 : 16;
+
+      if (currentTime - lastRenderTime < frameInterval) {
+        return;
+      }
+
+      lastRenderTime = currentTime;
+
+      if (effectiveDelta > 0) {
+        moveStars(effectiveDelta);
       }
       
       drawStars();
@@ -140,9 +164,15 @@ const ParticlesHome = () => {
       resizeTimeout = setTimeout(() => {
         const newWidth = window.innerWidth;
         const newHeight = window.innerHeight;
+        const updatedStarCount = getStarCount();
         
-        // Only resize if dimensions actually changed
-        if (canvas.width !== newWidth || canvas.height !== newHeight) {
+        // On mobile, scrolling often changes innerHeight slightly (URL bar). 
+        // Only re-initialize if width changes or height changes significantly.
+        const widthChanged = canvas.width !== newWidth;
+        const heightChangedSignificantly = Math.abs(canvas.height - newHeight) > 100;
+        
+        if (widthChanged || heightChangedSignificantly) {
+          numStars = updatedStarCount;
           canvas.width = newWidth;
           canvas.height = newHeight;
           focalLength = canvas.width * 2;
@@ -151,17 +181,23 @@ const ParticlesHome = () => {
       }, 150);
     };
 
+    const handleScroll = () => {
+      lastScrollTimeRef.current = performance.now();
+    };
+
     // Handle visibility changes to pause/resume animation
     const handleVisibilityChange = () => {
       isVisible = !document.hidden;
       if (isVisible) {
         // Reset timing when tab becomes visible to prevent jumps
         isFirstFrameRef.current = true;
+        lastRenderTime = 0;
         animationRef.current = requestAnimationFrame(executeFrame);
       }
     };
 
     window.addEventListener('resize', handleResize, { passive: true });
+    window.addEventListener('scroll', handleScroll, { passive: true });
     document.addEventListener('visibilitychange', handleVisibilityChange);
 
     // Cleanup function
@@ -171,6 +207,7 @@ const ParticlesHome = () => {
         cancelAnimationFrame(animationRef.current);
       }
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('scroll', handleScroll);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       clearTimeout(resizeTimeout);
     };
@@ -190,7 +227,8 @@ const ParticlesHome = () => {
           image-rendering: pixelated;
           font-family: sans-serif;
           overflow: hidden;
-          z-index: 0;
+          z-index: -1;
+          pointer-events: none;
           /* Improve GPU acceleration */
           will-change: transform;
           transform: translateZ(0);

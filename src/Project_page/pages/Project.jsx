@@ -144,7 +144,6 @@ const Project = () => {
           width: 100%;
           overflow-x: hidden;
           padding-top: 80px;
-          background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
         }
 
         .project-header {
