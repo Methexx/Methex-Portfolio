@@ -470,6 +470,70 @@ const projectData = [
         ]
       }
     }
+  },
+  {
+    id: "8",
+    title: "Screeenc USB-Only Screen Sharing",
+    description: "Screeenc is a USB-only screen sharing solution that streams a Windows desktop screen to an Android device with low latency, without Wi-Fi, internet, or web-based technologies.",
+    image: "https://via.placeholder.com/1200x700/111111/f8fafc?text=Screeenc",
+    technologies: ["Flutter", "Kotlin", "MediaCodec", "TCP Sockets", "ADB", "C++", "C#", "DXGI", "Windows Media Foundation"],
+    category: "Mobile",
+    screenshots: [
+      "https://via.placeholder.com/1200x700/111111/f8fafc?text=Screeenc"
+    ],
+    details: "Screeenc is a screen sharing system designed to stream a live Windows desktop screen to an Android device using only a USB cable. The project avoids Wi-Fi, internet-based transport, and browser technologies, instead relying on officially supported APIs and USB tunneling through ADB port forwarding. The Android receiver is fully implemented with hardware-accelerated H.264 decoding, foreground service support, USB connection detection, and a Flutter-based status interface, while the Windows sender is planned to handle screen capture and encoding through native Windows APIs.",
+
+    contributions: {
+      title: "My Role & Implementation",
+      description: "I designed and built this project as a low-latency USB-only screen sharing solution, focusing on practical architecture, native media handling, and a clean mobile receiver experience.",
+      responsibilities: [
+        "Designed the full end-to-end architecture for streaming Windows screen content to Android over USB.",
+        "Built the Android receiver application using Flutter and Kotlin with platform channel integration.",
+        "Implemented TCP-based H.264 video receiving and hardware-accelerated decoding using MediaCodec.",
+        "Added foreground service behavior, notification handling, and automatic USB connection state detection.",
+        "Structured the project around supported APIs and user-mode only techniques without security bypasses.",
+        "Prepared the system for native Windows sender development using DXGI Desktop Duplication and Media Foundation."
+      ]
+    },
+
+    detailedSections: {
+      mobileReceiver: {
+        title: "Android Receiver",
+        features: [
+          "Hardware H.264 Decoding: Uses MediaCodec for efficient video decoding on Android devices.",
+          "USB Tunnel Streaming: Receives TCP video data forwarded through ADB over a USB cable.",
+          "Foreground Service: Keeps the receiver active with notification-based background behavior.",
+          "Flutter UI: Displays real-time connection and receiver state through a clean mobile interface."
+        ]
+      },
+      systemArchitecture: {
+        title: "System Architecture",
+        features: [
+          "Windows Capture Pipeline: Planned screen capture through DXGI Desktop Duplication API.",
+          "Video Encoding: Planned H.264 encoding using Windows Media Foundation.",
+          "Transport Layer: TCP streaming through localhost with ADB port forwarding over USB.",
+          "Rendering Flow: Decoded frames are displayed on Android through SurfaceView."
+        ]
+      },
+      technologiesUsed: {
+        title: "Tech Stack",
+        items: [
+          "Mobile App: Flutter, Kotlin, Material 3",
+          "Video & Rendering: MediaCodec, H.264/AVC, SurfaceView",
+          "Transport: TCP sockets and ADB port forwarding",
+          "Planned Windows Sender: C++ or C#, DXGI Desktop Duplication API, Windows Media Foundation"
+        ]
+      },
+      securityCompliance: {
+        title: "Security & Compliance",
+        structure: [
+          "Uses officially supported Microsoft and Android APIs only.",
+          "Runs entirely in user mode without kernel drivers or system hooks.",
+          "Does not bypass DRM or capture protected secure surfaces.",
+          "Remains USB-only with no dependency on Wi-Fi or internet-based communication."
+        ]
+      }
+    }
   }
 ];
 
