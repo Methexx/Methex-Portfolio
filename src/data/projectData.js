@@ -276,6 +276,200 @@ const projectData = [
         ]
       }
     }
+  },
+  {
+    id: "5",
+    title: "AstroLift Gym Management Platform",
+    description: "AstroLift is a full-stack gym management and workout tracking web app that supports admin, trainer, and member roles with real-time updates across memberships, workouts, payments, and attendance.",
+    image: "https://via.placeholder.com/1200x700/111827/f8fafc?text=AstroLift",
+    technologies: ["Next.js", "Node.js", "Express", "Docker", "Docker Compose", "ESLint", "Prettier", "Husky", "Jest"],
+    category: "Web",
+    screenshots: [
+      "https://via.placeholder.com/1200x700/111827/f8fafc?text=AstroLift"
+    ],
+    details: "AstroLift is a production-ready gym management platform built to centralize everyday gym operations in one system. It provides structured access for admins, trainers, and members while supporting workout tracking, membership management, payment workflows, attendance logging, and real-time updates. The application is fully Dockerized, making setup and team collaboration smoother across development environments.",
+
+    contributions: {
+      title: "Team Contribution & My Role",
+      description: "I made a major hands-on contribution to this team project across both product behavior and implementation, helping shape key workflows, integrate core modules, and support a reliable full-stack delivery.",
+      responsibilities: [
+        "Contributed heavily to the full-stack implementation across frontend and backend features.",
+        "Helped build role-based experiences for admin, trainer, and member workflows.",
+        "Worked on core modules such as memberships, workout tracking, attendance, and payment-related flows.",
+        "Supported API integration and data flow between the Next.js frontend and Express backend.",
+        "Contributed to improving the project structure and Docker-based development setup.",
+        "Collaborated on testing, code quality, and workflow consistency using shared tooling and team practices.",
+        "Helped refine the user experience so daily gym operations could be handled more efficiently."
+      ]
+    },
+
+    detailedSections: {
+      platformRoles: {
+        title: "User Roles & Platform Access",
+        features: [
+          "Admin Panel: Manage memberships, payments, attendance records, and overall gym operations.",
+          "Trainer Workspace: Create workout programs, track member progress, and monitor assigned activities.",
+          "Member Portal: View workouts, follow assigned programs, and stay updated with gym activity.",
+          "Role-Based Access: Structured permissions help keep each workflow focused and secure."
+        ]
+      },
+      gymOperations: {
+        title: "Core Gym Operations",
+        features: [
+          "Membership Management: Organize member records and subscription-related workflows.",
+          "Workout Tracking: Create and follow workout plans with progress visibility.",
+          "Payments & Billing: Support billing-related processes and payment tracking.",
+          "Attendance Logging: Track attendance with real-time operational updates."
+        ]
+      },
+      technologiesUsed: {
+        title: "Tech Stack",
+        items: [
+          "Frontend: Next.js",
+          "Backend: Node.js with Express",
+          "Containerization: Docker and Docker Compose",
+          "Tooling & Quality: ESLint, Prettier, Husky, and Jest"
+        ]
+      },
+      deploymentSetup: {
+        title: "Project Setup & Delivery",
+        structure: [
+          "Dockerized Architecture: Frontend and backend services run together through Docker Compose.",
+          "Environment Setup: Backend configuration is managed through environment variables.",
+          "Development Workflow: Separate development compose setup supports hot reloading.",
+          "Production-Ready Outcome: The app was delivered as a scalable, team-friendly full-stack solution."
+        ]
+      }
+    }
+  },
+  {
+    id: "6",
+    title: "UniVerse School Management Platform",
+    description: "UniVerse is a full-stack school management platform that connects admins, teachers, security staff, and parents through a unified backend, web dashboard, and mobile app.",
+    image: "https://via.placeholder.com/1200x700/0f172a/f8fafc?text=UniVerse",
+    technologies: ["Fastify", "Next.js", "React", "Flutter", "TypeScript", "Prisma", "PostgreSQL", "Redis", "Docker", "Firebase", "Gemini"],
+    category: ["Web", "Mobile"],
+    screenshots: [
+      "https://via.placeholder.com/1200x700/0f172a/f8fafc?text=UniVerse"
+    ],
+    details: "UniVerse is a large-scale school management system built as a final year project to unify school operations across multiple user groups. The platform combines a Fastify backend, a Next.js web dashboard, and a Flutter mobile app to support admins, teachers, security staff, and parents in one connected ecosystem. It includes attendance management, QR-based gate tracking, results publishing, messaging, announcements, complaints handling, lost and found reporting, push notifications, and an AI-powered RAG chatbot for policy-aware assistance.",
+
+    contributions: {
+      title: "My Role & Implementation",
+      description: "This was my final year project, where I designed and built a large-scale multi-platform school management system covering backend services, web workflows, mobile access, and operational features.",
+      responsibilities: [
+        "Designed and implemented the full system structure across backend, web, and mobile application layers.",
+        "Built role-based access flows for admins, teachers, security staff, parents, and pending users.",
+        "Developed core modules including attendance, gate logs, announcements, messaging, complaints, and results management.",
+        "Integrated the Fastify API with the Next.js dashboard, Flutter parent app, and Firebase notification workflows.",
+        "Set up the monorepo structure, Docker-based development flow, environment configuration, and supporting tooling.",
+        "Implemented AI-assisted school support through RAG-based backend workflows and retrieval logic.",
+        "Maintained project quality through testing support, documentation, and structured development practices."
+      ]
+    },
+
+    detailedSections: {
+      platformAccess: {
+        title: "Platform Roles & Access",
+        features: [
+          "Admin Role: Manage overall school operations, users, notices, complaints, attendance, and reporting flows.",
+          "Teacher Role: Handle classes, attendance, results, messages, and class-scoped notices.",
+          "Security Role: Manage gate logs, QR scanning, and entry-exit monitoring.",
+          "Parent Access: Use the mobile app to track attendance, notifications, results, notices, support, and student status."
+        ]
+      },
+      coreFeatures: {
+        title: "Core Features",
+        features: [
+          "Gate System: QR-based IN/OUT scanning with auto-checkout logic and parent alerts.",
+          "Attendance & Results: Daily attendance sessions, batch submission, calendar views, and publishable term results.",
+          "Communication Tools: Messaging threads, announcements, and AI-assisted draft suggestions.",
+          "Support Modules: Complaints triage, lost and found reporting, push notifications, and email-based approval flows."
+        ]
+      },
+      technologiesUsed: {
+        title: "Tech Stack",
+        items: [
+          "Backend: Fastify, Prisma, PostgreSQL, Redis, Firebase integration, Gemini-powered RAG services",
+          "Web: Next.js, React, TypeScript, Tailwind CSS",
+          "Mobile: Flutter with structured feature modules for parent-facing workflows",
+          "DevOps & Tooling: Docker, npm workspaces, Husky, CI workflows, commitlint, and Vercel configuration"
+        ]
+      },
+      architecture: {
+        title: "Architecture & Delivery",
+        structure: [
+          "Monorepo Setup: Shared npm workspace containing backend, frontend, and Flutter applications.",
+          "Docker Development: Hot-reload development stack with backend, frontend, and Redis services.",
+          "Production Delivery: Separate production compose setup and deployment-ready configuration.",
+          "Final Year Scope: Designed as a comprehensive multi-platform system with documentation, testing, and CI support."
+        ]
+      }
+    }
+  },
+  {
+    id: "7",
+    title: "Avurudu Nekath Countdown App",
+    description: "A festive Flutter mobile app that counts down to the Sri Lankan Sinhala and Tamil New Year while displaying traditional Nekath times in a beautiful cultural interface.",
+    image: "https://via.placeholder.com/800x1200/7c2d12/fef3c7?text=Avurudu+Nekath+App",
+    technologies: ["Flutter", "Dart"],
+    category: "Mobile",
+    screenshots: [
+      "https://via.placeholder.com/800x1200/7c2d12/fef3c7?text=Avurudu+Nekath+App"
+    ],
+    details: "Avurudu Nekath Countdown App is a Flutter mobile application built to celebrate the Sri Lankan Sinhala and Tamil New Year through a culturally themed digital experience. The app provides a real-time countdown to Avurudu, displays important Nekath times such as bathing, lighting the hearth, and anointing oil, and presents the information through a festive user interface inspired by traditional colors and seasonal celebration vibes.",
+
+    contributions: {
+      title: "My Role & Implementation",
+      description: "I designed and developed this mobile application as a focused cultural utility app, combining countdown functionality, traditional event timing, and a polished festive user experience.",
+      responsibilities: [
+        "Built the mobile application using Flutter and Dart.",
+        "Implemented the real-time countdown logic for the Avurudu celebration date.",
+        "Designed screens and reusable widgets for displaying Nekath times clearly.",
+        "Structured the app into screens, widgets, models, and utility helpers for maintainability.",
+        "Created a festive interface style to match the cultural theme of the Sinhala and Tamil New Year.",
+        "Prepared the project for Android release and APK distribution."
+      ]
+    },
+
+    detailedSections: {
+      mobileFeatures: {
+        title: "Mobile Features",
+        features: [
+          "Real-Time Countdown: Live countdown to the Sinhala and Tamil New Year.",
+          "Nekath Times: View auspicious times for important Avurudu rituals and events.",
+          "Year Selection: Support for checking Avurudu celebrations for different years.",
+          "Festival-Themed Design: A colorful and festive interface inspired by Avurudu traditions."
+        ]
+      },
+      userExperience: {
+        title: "User Experience",
+        features: [
+          "Simple Navigation: Easy access between countdown and Nekath-related screens.",
+          "Clear Time Presentation: Traditional times are presented in a readable card-based layout.",
+          "Cultural Focus: The app is designed to feel relevant and familiar to Sri Lankan users.",
+          "Reminder Potential: Structured to support optional notifications for important Nekath moments."
+        ]
+      },
+      technologiesUsed: {
+        title: "Tech Stack",
+        items: [
+          "Framework: Flutter",
+          "Language: Dart",
+          "Architecture: Screen, widget, model, and utility-based structure",
+          "Distribution: Android APK release workflow"
+        ]
+      },
+      projectStructure: {
+        title: "Project Structure",
+        structure: [
+          "lib/screens: Home and Nekath-related screens",
+          "lib/widgets: Countdown timer and reusable Nekath cards",
+          "lib/models: Data model for Nekath information",
+          "lib/utils: Date helper utilities and supporting logic"
+        ]
+      }
+    }
   }
 ];
 

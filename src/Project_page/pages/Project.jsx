@@ -18,9 +18,17 @@ const Project = () => {
   // Use the imported project data instead of duplicating it
   const projects = projectData;
 
+  const matchesCategory = (project, filter) => {
+    const categories = Array.isArray(project.category)
+      ? project.category
+      : [project.category];
+
+    return categories.includes(filter);
+  };
+
   const filteredProjects = activeFilter === 'All' 
     ? projects 
-    : projects.filter(project => project.category === activeFilter);
+    : projects.filter(project => matchesCategory(project, activeFilter));
 
   // Calculate pagination
   const totalPages = Math.ceil(filteredProjects.length / PROJECTS_PER_PAGE);

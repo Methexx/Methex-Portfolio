@@ -9,6 +9,9 @@ const ProjectDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const project = projectData.find(proj => proj.id === id);
+  const projectCategories = Array.isArray(project?.category)
+    ? project.category
+    : [project?.category].filter(Boolean);
 
   if (!project) {
     return (
@@ -110,7 +113,9 @@ const ProjectDetail = () => {
           <h3>Project Overview</h3>
           <p className="project-details">{project.details}</p>
           <div className="project-status">
-            <span className="category-badge">{project.category}</span>
+            {projectCategories.map((category) => (
+              <span key={category} className="category-badge">{category}</span>
+            ))}
           </div>
         </div>
 
